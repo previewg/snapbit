@@ -1,11 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
     <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>  <!--AOS_Css-->
-    <link rel="stylesheet" href="../css/news.css" /> <!--News_Css-->
+    <link rel="stylesheet" href="../css/news.css"/> <!--News_Css-->
 
 
 </head>
@@ -15,35 +15,38 @@
     <div class="flex-grow flex justify-center">
         <span class="text-3xl text-white font-bold change">SNIPP</span>
 
-	</div>
-	<div
-		class="justify-around flex-grow flex justify-between text-white change">
-		<a
-			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-			href="/">Home</a> <a
-			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-		<a
-			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
-		<a
-			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
-	</div>
+    </div>
+    <div
+            class="justify-around flex-grow flex justify-between text-white change">
+        <a
+                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+                href="/">Home</a> <a
+            class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a
+                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
+        <a
+                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
+    </div>
 
 
-<<<<<<< HEAD
-	<div class="flex-grow flex justify-center transform">
-		<form method="get" action="signin">
-			<ul th:if="${session.user_info} == null"><a href="/signin">
-					<span class="glyphicon glyphicon-log-in"> </span>
-					<button
-						class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">Login</button>
-			</a></ul>
-			<ul th:if="${session.user_info} != null"><a href="/signout">
-					<span class="glyphicon glyphicon-log-out"></span>
-					<button
-						class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">Logout</button>
-			</a></ul>
-	</div>
-	</nav>
+    <div class="flex-grow flex justify-center transform">
+        <form method="get" action="signin">
+            <ul th:if="${session.user_info} == null"><a href="/signin">
+                <span class="glyphicon glyphicon-log-in"> </span>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                    Login
+                </button>
+            </a></ul>
+            <ul th:if="${session.user_info} != null"><a href="/signout">
+                <span class="glyphicon glyphicon-log-out"></span>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                    Logout
+                </button>
+            </a></ul>
+    </div>
+</nav>
 
 
 <!-- News Section -->
@@ -86,7 +89,6 @@
 </section>
 
 
-
 <!-- Small Chart Section-->
 <section class="h-screen flex justify-around mb-56 items-center">
     <article data-aos="zoom-in-right" class="rounded-lg ml-48 shadow-lg bg-transparent hover:shadow-2xl "
@@ -95,20 +97,43 @@
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
         </div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-                {
-                    "symbol": "BITHUMB:BTCKRW",
-                    "width": "440",
-                    "height": "420",
-                    "locale": "kr",
-                    "dateRange": "12m",
-                    "colorTheme": "dark",
-                    "trendLineColor": "#37a6ef",
-                    "underLineColor": "rgba(55, 166, 239, 0.15)",
-                    "isTransparent": false,
-                    "autosize": true,
-                    "largeChartUrl": ""
-                }
+        <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {
+                "symbol"
+            :
+                "BITHUMB:BTCKRW",
+                    "width"
+            :
+                "440",
+                    "height"
+            :
+                "420",
+                    "locale"
+            :
+                "kr",
+                    "dateRange"
+            :
+                "12m",
+                    "colorTheme"
+            :
+                "dark",
+                    "trendLineColor"
+            :
+                "#37a6ef",
+                    "underLineColor"
+            :
+                "rgba(55, 166, 239, 0.15)",
+                    "isTransparent"
+            :
+                false,
+                    "autosize"
+            :
+                true,
+                    "largeChartUrl"
+            :
+                ""
+            }
         </script>
 
         <!-- TradingView1 Widget END -->
@@ -121,16 +146,33 @@
             <div class="tradingview-widget-container__widget">
             </div>
         </div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+        <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
             {
-                "interval": "1D",
-                "width": 440,
-                "isTransparent": false,
-                "height": 420,
-                "symbol": "BITHUMB:BTCKRW",
-                "showIntervalTabs": true,
-                "locale": "kr",
-                "colorTheme": "dark"
+                "interval"
+            :
+                "1D",
+                    "width"
+            :
+                440,
+                    "isTransparent"
+            :
+                false,
+                    "height"
+            :
+                420,
+                    "symbol"
+            :
+                "BITHUMB:BTCKRW",
+                    "showIntervalTabs"
+            :
+                true,
+                    "locale"
+            :
+                "kr",
+                    "colorTheme"
+            :
+                "dark"
             }
         </script>
 
