@@ -2,13 +2,8 @@ var bg = document.querySelector('.item-bg');
 var items = document.querySelectorAll('.news__item');
 var item = document.querySelector('.news__item');
 
-function cLog(content) {
-    console.log(content)
-}
-
-if($(window).width() > 800) {
+if($(window).width() > 1000) {
     $(document).on("mouseover", ".news__item", function (_event, _element) {
-
         var newsItem = document.querySelectorAll('.news__item');
         newsItem.forEach(function (element, index) {
             element.addEventListener('mouseover', function () {
@@ -61,7 +56,7 @@ function init() {
                 centeredSlides: true
             }
         },
-        simulateTouch: true,
+        // simulateTouch: true,
         navigation: {
             nextEl: '.news-slider-next',
             prevEl: '.news-slider-prev'
@@ -85,7 +80,6 @@ function init() {
 
 
                 $('.item-bg').addClass('active');
-
                 bg.style.width = width + 'px';
                 bg.style.height = height + 'px';
                 bg.style.transform = 'translateX(' + x + 'px ) translateY(' + y + 'px)';

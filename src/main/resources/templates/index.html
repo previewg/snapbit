@@ -11,7 +11,7 @@
 </head>
 <body>
 <img style="z-index: -1" src="../img/wall.jpg" class="w-full h-screen fixed">
-<nav id="navbar" class="flex h-24 items-center w-full">
+<nav id="navbar" class="flex h-20 items-center w-full top-0">
     <div class="flex-grow flex justify-center">
         <span class="text-3xl text-white font-bold change">SNIPP</span>
 
@@ -29,33 +29,29 @@
 
 
 <!-- News Section -->
-<section>
-    <div class="wrapper">
-        <div class="item-bg"></div>
-        <div class="news-slider">
-            <div class="news-slider__wrp swiper-wrapper"></div>
-
-            <div class="news-slider__ctr">
-
-                <div class="news-slider__arrows">
-                    <button class="news-slider__arrow news-slider-prev">
-          <span class="icon-font">
-            <svg class="icon icon-arrow-left"><use xlink:href="#icon-arrow-left"></use></svg>
-          </span>
-                    </button>
-                    <button class="news-slider__arrow news-slider-next">
-          <span class="icon-font">
-            <svg class="icon icon-arrow-right"><use xlink:href="#icon-arrow-right"></use></svg>
-          </span>
-                    </button>
-                </div>
-
-                <div class="news-slider__pagination"></div>
-
+<section class="h-screen" id="news">
+    <div class="item-bg"></div>
+    <div class="news-slider">
+        <div class="news-slider__wrp swiper-wrapper"></div>
+        <div class="news-slider__ctr">
+            <div class="news-slider__arrows">
+                <button class="news-slider__arrow news-slider-prev">
+      <span class="icon-font">
+        <svg class="icon icon-arrow-left"><use xlink:href="#icon-arrow-left"></use></svg>
+      </span>
+                </button>
+                <button class="news-slider__arrow news-slider-next">
+      <span class="icon-font">
+        <svg class="icon icon-arrow-right"><use xlink:href="#icon-arrow-right"></use></svg>
+      </span>
+                </button>
             </div>
+
+            <div class="news-slider__pagination"></div>
 
         </div>
     </div>
+
 
     <svg hidden="hidden">
         <defs>
@@ -73,49 +69,73 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- Main Section-->
-<!--<section class="flex justify-center items-center" style="height: 45rem">-->
-<!--    <p class="text-white font-bold text-6xl">-->
-<!--        Cryptocurrency-->
-<!--    </p>-->
-<!--</section>-->
-
 <!-- Small Chart Section-->
-<section class="h-screen flex justify-around mb-56 mt-40">
-    <article data-aos="zoom-in-right" class="border rounded-lg ml-48 shadow-lg bg-white hover:shadow-2xl "
-             style="height: 500px;width: 440px">
-        여기에
+<section class="h-screen flex justify-around mb-56 items-center">
+    <article data-aos="zoom-in-right" class="rounded-lg ml-48 shadow-lg bg-transparent hover:shadow-2xl "
+             style="height: 420px;width: 440px">
+        <!-- TradingView Widget1 BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+        </div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                {
+                    "symbol": "BITHUMB:BTCKRW",
+                    "width": "440",
+                    "height": "420",
+                    "locale": "kr",
+                    "dateRange": "12m",
+                    "colorTheme": "dark",
+                    "trendLineColor": "#37a6ef",
+                    "underLineColor": "rgba(55, 166, 239, 0.15)",
+                    "isTransparent": false,
+                    "autosize": true,
+                    "largeChartUrl": ""
+                }
+        </script>
+
+        <!-- TradingView1 Widget END -->
     </article>
 
-    <article data-aos="zoom-in-left" class="border rounded-lg mr-48 shadow-lg bg-white hover:shadow-2xl"
-             style="height: 500px;width: 440px; margin-top: 20rem">
-        차트를
+    <article data-aos="zoom-in-left" class="rounded-lg mr-48 shadow-lg bg-transparent hover:shadow-2xl"
+             style="height: 420px;width: 440px;">
+        <!-- TradingView2 Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget">
+            </div>
+        </div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+            {
+                "interval": "1D",
+                "width": 440,
+                "isTransparent": false,
+                "height": 420,
+                "symbol": "BITHUMB:BTCKRW",
+                "showIntervalTabs": true,
+                "locale": "kr",
+                "colorTheme": "dark"
+            }
+        </script>
+
+        <!-- TradingView2 Widget END -->
     </article>
 </section>
 
 <!-- Big Chart Section-->
 <section class="h-screen flex justify-center">
     <article
-            class="border rounded-lg shadow-lg bg-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-20"
-            style="height: 500px;width: 1200px">
-        메인차트
+            class="rounded-lg shadow-lg bg-transparent transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 mt-20"
+            style="height: 400px;">
+        <!-- TradingView3 Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div id="tradingview_600bc"></div>
+        </div>
+        <!-- TradingView3 Widget END -->
     </article>
 
 </section>
 
 <footer class="h-64 bg-gray-200">
-    asdasd
+    여기가 footer
 
 </footer>
 
@@ -129,7 +149,27 @@
 <!--News JS-->
 <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 <script src='../js/news.js'></script>
-
 <script src="../js/newsData.js"></script>
+
+<!--Chart JS-->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+    new TradingView.widget(
+        {
+            "width": 900,
+            "height": 400,
+            "symbol": "BITHUMB:BTCKRW",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "kr",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_600bc"
+        }
+    );
+</script>
 </body>
 </html>
