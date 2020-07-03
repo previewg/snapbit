@@ -18,7 +18,6 @@ import lombok.Data;
 
 @Controller
 @Data
-
 public class LoginController {
 	@Autowired
 	UserRepository userRepository;
