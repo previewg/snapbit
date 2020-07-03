@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
+    <link href="../css/signIn.css" rel="stylesheet">  <!--tailwind_Css-->
+
+</head>
+<body>
+<nav class="flex h-24 items-center w-full border-b">
+    <div class="flex-grow flex justify-center">
+        <span class="text-3xl font-bold change">SNIPP</span>
+
+    </div>
+    <div class="justify-around flex-grow flex justify-between change">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
+    </div>
+    <div class="flex-grow flex justify-center transform">
+        <button class="flex border rounded-lg w-24 text-xl justify-center p-1 hover:scale-110 change focus:outline-none">Login</button>
+    </div>
+
+</nav>
+
+<!-- Main Section-->
+<section class="flex justify-center items-center flex-col h-full" style="height: 45rem">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <p class="text-2xl">Create Account</p>
+                <input type="text" placeholder="이름" />
+                <input type="email" placeholder="이메일" />
+                <input type="password" placeholder="비밀번호" />
+                <button class="focus:outline-none bg-red-600 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">가입하기</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <p class="text-2xl">Sign in</p>
+                <input type="email" placeholder="이메일" />
+                <input type="password" placeholder="비밀번호" />
+                <a href="#">비밀번호를 잊어버리셨나요?</a>
+                <button class="focus:outline-none bg-red-600 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">로그인</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <p class="text-2xl">이미 회원이신가요?</p>
+                    <p>지금 바로 서비스를 이용하세요!</p>
+                    <button class="bg-transparent border-white focus:outline-none border p-3  pl-10 pr-10 mt-16 rounded-full" id="signIn">로그인</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <p class="text-2xl">간편하게 가입하세요!</p>
+                    <p>다양한 코인들의 정보와 뉴스를 간편하게 볼 수 있도록 제공합니다!</p>
+                    <button class="bg-transparent border-white focus:outline-none border p-3 pl-10 pr-10 mt-16 rounded-full" id="signUp">가입하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="../js/signIn.js"></script>
+
+
+</body>
+</html>
