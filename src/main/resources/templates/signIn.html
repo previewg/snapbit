@@ -29,23 +29,28 @@
 <section class="flex justify-center items-center flex-col h-full" style="height: 45rem">
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form method="post" action="/signup">
                 <p class="text-2xl">Create Account</p>
-                <input type="text" placeholder="이름" />
-                <input type="email" placeholder="이메일" />
-                <input type="password" placeholder="비밀번호" />
-                <button class="focus:outline-none bg-red-600 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">가입하기</button>
+                <input type="text" placeholder="이름" name="name"/>
+                <input type="email" placeholder="이메일" name="email"/>
+                <p id="error_email"></p>
+                <input type="password" placeholder="비밀번호 " name="pwd" />
+                <button id="signUpBtn" class="focus:outline-none bg-red-600 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">
+                	가입하기
+                </button>
             </form>
         </div>
+      
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form method="post" action="signin">
                 <p class="text-2xl">Sign in</p>
-                <input type="email" placeholder="이메일" />
-                <input type="password" placeholder="비밀번호" />
+                <input type="email" placeholder="이메일" name="email"/>
+                <input type="password" placeholder="비밀번호" name="pwd"/>
                 <a href="#">비밀번호를 잊어버리셨나요?</a>
                 <button class="focus:outline-none bg-red-600 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">로그인</button>
             </form>
         </div>
+  
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
@@ -63,9 +68,8 @@
     </div>
 </section>
 
-
-<script src="../static/js/signIn.js"></script>
-
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../js/signIn.js"></script>
 
 </body>
 </html>
