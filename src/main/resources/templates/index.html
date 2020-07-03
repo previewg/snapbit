@@ -15,17 +15,35 @@
     <div class="flex-grow flex justify-center">
         <span class="text-3xl text-white font-bold change">SNIPP</span>
 
-    </div>
-    <div class="justify-around flex-grow flex justify-between text-white change">
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/">Home</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
-    </div>
-    <div class="flex-grow flex justify-center transform">
-        <button class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">Login</button>
-    </div>
-</nav>
+	</div>
+	<div
+		class="justify-around flex-grow flex justify-between text-white change">
+		<a
+			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+			href="/">Home</a> <a
+			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+		<a
+			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
+		<a
+			class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
+	</div>
+
+
+<<<<<<< HEAD
+	<div class="flex-grow flex justify-center transform">
+		<form method="get" action="signin">
+			<ul th:if="${session.user_info} == null"><a href="/signin">
+					<span class="glyphicon glyphicon-log-in"> </span>
+					<button
+						class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">Login</button>
+			</a></ul>
+			<ul th:if="${session.user_info} != null"><a href="/signout">
+					<span class="glyphicon glyphicon-log-out"></span>
+					<button
+						class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">Logout</button>
+			</a></ul>
+	</div>
+	</nav>
 
 
 <!-- News Section -->
@@ -149,6 +167,7 @@
 <!--News JS-->
 <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 <script src='../js/news.js'></script>
+
 <script src="../js/newsData.js"></script>
 
 <!--Chart JS-->
