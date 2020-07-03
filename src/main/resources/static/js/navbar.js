@@ -1,18 +1,19 @@
 $(document).ready(()=>{
     $(window).scroll(()=>{
         var scroll = $(window).scrollTop();
-        if(scroll>600){
-            $("#navbar").css("background","white");
+        if(scroll>0){
+            $("#navbar").css("background-color","white");
+            $("#navbar").css("z-index","100");
             $("#navbar").css("position","fixed");
-            $("#navbar").css("z-index","1");
             $(".change").css("color","black");
 
         }
         else{
-            $("#navbar").css("background","none");
-            $("#navbar").css("position","relative");
+            $("#navbar").css("background-color","transparent");
             $("#navbar").css("z-index","0");
+            $("#navbar").css("position","relative");
             $(".change").css("color","white");
+
 
 
         }
