@@ -5,89 +5,68 @@
     <title>Document</title>
     <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>  <!--AOS_Css-->
-    <link rel="stylesheet" href="../css/news.css"/> <!--News_Css-->
-
-
+    <link rel="stylesheet" href="../css/phone.css"/>
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
+    <link rel="stylesheet" href="../css/background.css"/>
 </head>
 <body>
-<img style="z-index: -1" src="../img/wall.jpg" class="w-full h-screen fixed">
-<nav id="navbar" class="flex h-20 items-center w-full top-0">
+<!--<img style="z-index: -1" src="../img/wall.jpg" class="w-full h-screen fixed">-->
+<nav id="navbar" class="flex h-20 items-center w-full top-0 z-10 fixed">
     <div class="flex-grow flex justify-center">
-        <span class="text-3xl text-white font-bold change">SNIPP</span>
+        <a class="text-4xl text-white font-bold change" href="/">SNAPBIT</a>
 
     </div>
-    <div
-            class="justify-around flex-grow flex justify-between text-white change">
-        <a
-                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-                href="/">Home</a> <a
-            class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-        <a
-                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
-        <a
-                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
+    <div class="justify-around flex-grow flex justify-between text-white change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
 
 
     <div class="flex-grow flex justify-center transform">
-        <form method="get" action="signin">
-            <ul th:if="${session.user_info} == null"><a href="/signin">
-                <span class="glyphicon glyphicon-log-in"> </span>
+        <form method="get" action="/signIn">
+            <ul th:if="${session.user_info} == null">
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Login
                 </button>
-            </a></ul>
-            <ul th:if="${session.user_info} != null"><a href="/signout">
-                <span class="glyphicon glyphicon-log-out"></span>
+            </ul>
+            <ul th:if="${session.user_info} != null">
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Logout
                 </button>
-            </a></ul>
+            </ul>
     </div>
 </nav>
 
 
-<!-- News Section -->
-<section class="h-screen" id="news">
-    <div class="item-bg"></div>
-    <div class="news-slider">
-        <div class="news-slider__wrp swiper-wrapper"></div>
-        <div class="news-slider__ctr">
-            <div class="news-slider__arrows">
-                <button class="news-slider__arrow news-slider-prev">
-      <span class="icon-font">
-        <svg class="icon icon-arrow-left"><use xlink:href="#icon-arrow-left"></use></svg>
-      </span>
-                </button>
-                <button class="news-slider__arrow news-slider-next">
-      <span class="icon-font">
-        <svg class="icon icon-arrow-right"><use xlink:href="#icon-arrow-right"></use></svg>
-      </span>
-                </button>
+<!--Phone News Section-->
+<section class="h-screen flex justify-start items-center">
+    <p class="ml-10 text-lg text-white absolute">아래로 스크롤 해보세요!</p>
+
+    <div class="phone flex justify-center absolute items-center"
+         style="background-image: url(../img/iphone11.png);background-size:100% 100%;width: 1000px;height: 900px">
+        <div class="screen">
+            <div class="content-wrapper">
+                <div class="content">
+                    <ol class="messages">
+                    </ol>
+                </div>
             </div>
-
-            <div class="news-slider__pagination"></div>
-
         </div>
     </div>
 
-
-    <svg hidden="hidden">
-        <defs>
-            <symbol id="icon-arrow-left" viewBox="0 0 32 32">
-                <title>arrow-left</title>
-                <path d="M0.704 17.696l9.856 9.856c0.896 0.896 2.432 0.896 3.328 0s0.896-2.432 0-3.328l-5.792-5.856h21.568c1.312 0 2.368-1.056 2.368-2.368s-1.056-2.368-2.368-2.368h-21.568l5.824-5.824c0.896-0.896 0.896-2.432 0-3.328-0.48-0.48-1.088-0.704-1.696-0.704s-1.216 0.224-1.696 0.704l-9.824 9.824c-0.448 0.448-0.704 1.056-0.704 1.696s0.224 1.248 0.704 1.696z"></path>
-            </symbol>
-            <symbol id="icon-arrow-right" viewBox="0 0 32 32">
-                <title>arrow-right</title>
-                <path d="M31.296 14.336l-9.888-9.888c-0.896-0.896-2.432-0.896-3.328 0s-0.896 2.432 0 3.328l5.824 5.856h-21.536c-1.312 0-2.368 1.056-2.368 2.368s1.056 2.368 2.368 2.368h21.568l-5.856 5.824c-0.896 0.896-0.896 2.432 0 3.328 0.48 0.48 1.088 0.704 1.696 0.704s1.216-0.224 1.696-0.704l9.824-9.824c0.448-0.448 0.704-1.056 0.704-1.696s-0.224-1.248-0.704-1.664z"></path>
-            </symbol>
-        </defs>
-    </svg>
+    <article class="flex-col items-center justify-center flex"
+             style="-webkit-font-smoothing: antialiased;margin-left: 50%">
+        <p class="text-6xl text-white mb-20 font-bold">암호화폐, 블록체인 정보를</p>
+        <p class="text-4xl text-white mb-20">스냅빗과 함께 빠르고 간편하게</p>
+        <p class="text-5xl text-white">오늘부터 1일 1스냅!</p>
+    </article>
 </section>
-
 
 <!-- Small Chart Section-->
 <section class="h-screen flex justify-around mb-56 items-center">
@@ -207,9 +186,6 @@
 <!--Nav JS-->
 <script src="../js/navbar.js"></script>
 <!--News JS-->
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-<script src='../js/news.js'></script>
-
 <script src="../js/newsData.js"></script>
 
 <!--Chart JS-->
@@ -232,5 +208,8 @@
         }
     );
 </script>
+
+<!--<script src="../js/phone.js"></script>-->
+
 </body>
 </html>

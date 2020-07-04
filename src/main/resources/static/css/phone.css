@@ -1,0 +1,60 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.screen {
+    transform: translateX(-10px);
+    margin-top: 55px;
+    z-index: 5;
+    width: 310px;
+    height: 640px;
+    overflow: hidden;
+    background:transparent;
+}
+
+.content-wrapper {
+    position: relative;
+    padding: 0 1rem;
+    z-index: 1;
+    height: 100%;
+    overflow: auto;
+    backface-visibility: hidden;
+}
+
+.content {
+    display: block;
+}
+
+.messages {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.messages li {
+    display: block;
+    float: left;
+    clear: both;
+    max-width: 75%;
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+
+.messages li:nth-child(even) {
+    float: right;
+}
+
+
+.messages p {
+    border-radius: 0.75rem;
+    background: #e6e5eb;
+    color: #383641;
+    padding: 0.6875rem;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.messages li:nth-child(even) p {
+    background: #158ffe;
+    color: #fff;
+}

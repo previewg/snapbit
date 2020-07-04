@@ -32,8 +32,8 @@ public class NewsController {
         RequestEntity requestEntity = null;
         try {
             requestEntity = RequestEntity.get(
-                    new URI("https://openapi.naver.com/v1/search/news.json?sort=sim&query=" +
-                            URLEncoder.encode("비트코인", "utf-8")))
+                    new URI("https://openapi.naver.com/v1/search/news.json?display=50&sort=sim&query=" +
+                            URLEncoder.encode("블록체인", "utf-8")))
                     .header("X-Naver-Client-Id", "PP4F78Os1q39Iwoy1NOA")
                     .header("X-Naver-Client-Secret", "yYnKdT5xGM")
                     .build();

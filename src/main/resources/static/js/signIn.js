@@ -16,7 +16,7 @@ $('[name=email]').blur(function() {
 	var email = $(this).val();
 	
 	$.ajax({
-		url: 'id_check',
+		url: 'idCheck',
 		type: 'post',
 		data: { 'email': email },
 		success: function(res) {
@@ -37,11 +37,16 @@ $('[name=email]').blur(function() {
 });
 
 $('#signUpBtn').click(function() {
-	if(!isPass) {	
+	if(!isPass) {
 		alert('이미 사용중인 이메일입니다.');
 		return false;
 	} else {
 		alert('가입을 축하 드립니다.');
 		return true;
 	}
+});
+
+$("#signIn").click(function() {
+	$("form").submit();
+	return false;
 });

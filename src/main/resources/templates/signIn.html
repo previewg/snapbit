@@ -6,18 +6,21 @@
     <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
     <link href="../css/signIn.css" rel="stylesheet">  <!--tailwind_Css-->
 
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
-<nav class="flex h-24 items-center w-full border-b">
+<nav class="flex h-20 items-center w-full border-b">
     <div class="flex-grow flex justify-center">
-        <span class="text-3xl font-bold change">SNIPP</span>
+        <span class="text-4xl font-bold change">SNAPBIT</span>
 
     </div>
-    <div class="justify-around flex-grow flex justify-between change">
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/">Home</a>
+    <div class="justify-around flex-grow flex justify-between change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Service</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Contact</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
     <div class="flex-grow flex justify-center transform">
         <button class="flex border rounded-lg w-24 text-xl justify-center p-1 hover:scale-110 change focus:outline-none">Login</button>
@@ -29,7 +32,7 @@
 <section class="flex justify-center items-center flex-col h-full" style="height: 45rem">
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" action="/signup">
+            <form method="post" action="/signUp">
                 <p class="text-2xl">Create Account</p>
                 <input type="text" placeholder="이름" name="name"/>
                 <input type="email" placeholder="이메일" name="email"/>
@@ -42,7 +45,7 @@
         </div>
       
         <div class="form-container sign-in-container">
-            <form method="post" action="signin">
+            <form method="post" action="/signIn">
                 <p class="text-2xl">Sign in</p>
                 <input type="email" placeholder="이메일" name="email"/>
                 <input type="password" placeholder="비밀번호" name="pwd"/>

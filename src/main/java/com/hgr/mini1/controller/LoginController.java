@@ -21,10 +21,11 @@ import lombok.Data;
 public class LoginController {
 	@Autowired
 	UserRepository userRepository;
+
 	@Autowired
 	HttpSession session;
 
-	@PostMapping("/id_check")
+	@PostMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(@ModelAttribute User user, Model model) {
 		User result = userRepository.findByEmail(user.getEmail());
@@ -40,26 +41,26 @@ public class LoginController {
 
 	}
 
-	@GetMapping("/signin")
-	public String signin() {
-		return "signin";
+	@GetMapping("/signIn")
+	public String signIn() {
+		return "signIn";
 	}
 
 	
-	@PostMapping("/signup")
-	public String signupPost(@ModelAttribute User user, Model model) {
+	@PostMapping("/signUp")
+	public String signUpPost(@ModelAttribute User user, Model model) {
 		userRepository.save(user);
-		return "signin";
+		return "signIn";
 	}
 
-	@GetMapping("/signout")
-	public String signout() {
+	@GetMapping("/signOut")
+	public String signOut() {
 		session.removeAttribute("user_info");
 		return "redirect:/";
 	}
 
-	@PostMapping("/signin")
-	public String signinPost(@ModelAttribute User user) {
+	@PostMapping("/signIn")
+	public String signInPost(@ModelAttribute User user) {
 		User dbUser = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
 		if (dbUser != null) {
 			session.setAttribute("user_info", dbUser);
