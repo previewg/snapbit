@@ -10,13 +10,27 @@ signInButton.addEventListener('click', () => {
 
 let isPass = false;
 
-$('#userEmail').focus(function(){
-	$('#error_email').text("");
-})
+// $('#signUp__email').on("input",function(){
+// 	$('#error_email').empty();
+// 	let email = $(this).val();
+// 	if(email!==""){
+// 		$.ajax({
+// 			url: '/signUpVerify',
+// 			type: 'post',
+// 			data: { 'email': email },
+// 			success: function(res) {
+// 				if(res == 'isAvailable') {
+// 					isPass = true;
+// 				} else {
+// 					isPass = false;
+// 				}
+// 			}
+// 		})};
+// })
 
-$('#userEmail').blur(function () {
+$('#signUp__email').blur(function () {
 	let email = $(this).val();
-	console.log(email);
+	if(email!==""){
 	$.ajax({
 		url: '/signUpVerify',
 		type: 'post',
@@ -34,46 +48,56 @@ $('#userEmail').blur(function () {
 			}
 			$('#error_email').text(msg);
 		}
-	});
+	})};
 });
 
 
 
 $('#signUp__btn').click(function() {
-	if(isPass) {
-		if(($("#userEmail").val())&&($("#userName").val())&&($("#userPwd").val())){
-			alert('입력 사항을 확인바랍니다.');
+	if(!isPass) {
+		if($("#signUp__email").val()===""){
+			alert("입력 사항을 확인바랍니다.")
 		}else{
 			alert('이메일이 이미 존재합니다. 다른 이메일을 입력바랍니다.');
 		}
 		return false;
 	} else {
-		$.ajax({
-			url: 'signUp',
-			type: 'post',
-			data: $("#signUp__form").serialize(),
-			success: function(res) {
-				alert('가입을 축하 드립니다. 지금 바로 로그인하세요!');
-				location = "/signIn";
-			}
-		})
-		return true;
+		if(!(($("#signUp__name").val())&&($("#signUp__pwd").val()))){
+			alert('입력 사항을 확인바랍니다.');
+			return false;
+		}else {
+			$.ajax({
+				url: 'signUp',
+				type: 'post',
+				data: $("#signUp__form").serialize(),
+				success: function (res) {
+					alert('가입을 축하 드립니다. 지금 바로 로그인하세요!');
+					location = "/signIn";
+				}
+			})
+			return true;
+		}
 	}
-
 });
 
 $("#signIn__btn").click(function() {
-	$.ajax({
-		url: 'signIn',
-		type: 'post',
-		data: $("#signIn__form").serialize(),
-		success: function(res) {
-			if(res.get("verified")==="correct"){
-				alert(res.get("username")+" 님 반갑습니다!");
-				location = "/";
-			} else{
-				return false;
+	if(!(($("#signIn__email").val())&&($("#signIn__pwd").val()))){
+		alert('입력 사항을 확인바랍니다.');
+		return false;
+	}else{
+		$.ajax({
+			url: 'signIn',
+			type: 'post',
+			data: $("#signIn__form").serialize(),
+			success: function(res) {
+				if(res.verified==="correct"){
+					alert(res.username+" 님 반갑습니다!");
+					location = "/";
+				} else{
+					alert("이메일 / 비밀번호를 확인바랍니다.");
+					return false;
+				}
 			}
-		}
-	})
+		});
+	}
 });

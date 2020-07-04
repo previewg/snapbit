@@ -19,13 +19,11 @@
     src: url(./HannaAir.ttf) format("truetype");
 }
 
-@font-face {
-    font-family: 'Yanolja_r';
-    font-style: normal;
-    font-weight: 400;
-    src: url(./yanolja_r.ttf) format("truetype");
-}
-
 body {
     font-family: 'Hanna';
+}
+
+#signIn__font {
+
+    font-family: 'NEXON Lv1 Gothic OTF Light';
 }

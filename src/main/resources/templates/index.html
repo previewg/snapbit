@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/background.css"/>
 </head>
 <body>
-<!--<img style="z-index: -1" src="../img/wall.jpg" class="w-full h-screen fixed">-->
 <nav id="navbar" class="flex h-20 items-center w-full top-0 z-10 fixed">
     <div class="flex-grow flex justify-center">
         <a class="text-4xl text-white font-bold change" href="/">SNAPBIT</a>
@@ -28,18 +27,20 @@
 
     <div class="flex-grow flex justify-center transform">
         <form method="get" action="/signIn">
-            <ul th:if="${session.user_info} == null">
+            <ul th:if="${session.user_info} == null" >
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
-                    SignIn
+                    Signin
                 </button>
             </ul>
-            <ul th:if="${session.user_info} != null">
-                <button
+            <ul th:if="${session.user_info} != null" class="flex">
+                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
+                <button th:action="@{/signOut}" method="get"
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
-                    SignOut
+                    Signout
                 </button>
             </ul>
+        </form>
     </div>
 </nav>
 

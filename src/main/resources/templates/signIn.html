@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
-<nav class="flex h-20 items-center w-full border-b">
+<nav class="flex h-20 items-center w-full border-b fixed z-30">
     <div class="flex-grow flex justify-center">
         <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
 
@@ -23,24 +23,37 @@
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
     <div class="flex-grow flex justify-center transform">
-        <button class="flex border rounded-lg w-24 text-xl justify-center p-1 hover:scale-110 change focus:outline-none">SignIn</button>
+        <form method="get" action="/signIn">
+            <ul th:if="${session.user_info} == null" >
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signin
+                </button>
+            </ul>
+            <ul th:if="${session.user_info} != null" class="flex">
+                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
+                <button th:action="@{/signOut}" method="get"
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signout
+                </button>
+            </ul>
+        </form>
     </div>
-
 </nav>
 
 <!-- Main Section-->
-<section class="flex justify-center items-center flex-col h-full" style="height: 45rem">
+<section id="signIn__font" class="flex justify-center items-center flex-col h-screen">
     <div class="container" id="container">
 
         <!---------------------------------------signUp--------------------------------------->
         <div class="form-container sign-up-container">
             <form id="signUp__form">
-                <p class="text-2xl mb-10">Create Account</p>
-                <input type="text" placeholder="이름" name="name" id="userName"/>
-                <input type="email" placeholder="이메일" name="email" id="userEmail"/>
+                <p class="text-3xl mb-10">Create Account</p>
+                <input type="text" placeholder="이름" name="name" id="signUp__name"/>
+                <input type="email" placeholder="이메일" name="email" id="signUp__email"/>
                 <p id="error_email"></p>
-                <input type="password" placeholder="비밀번호 " name="pwd" id="userPwd"/>
-                <button id="signUp__btn" class="focus:outline-none bg-red-500 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">
+                <input type="password" placeholder="비밀번호 " name="pwd" id="signUp__pwd"/>
+                <button id="signUp__btn" class="focus:outline-none bg-blue-500 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">
                 	가입하기
                 </button>
             </form>
@@ -49,10 +62,10 @@
         <!---------------------------------------signIn--------------------------------------->
         <div class="form-container sign-in-container">
             <form id="signIn__form">
-                <p class="text-2xl mb-10">Sign in</p>
-                <input type="email" placeholder="이메일" name="email"/>
-                <input type="password" placeholder="비밀번호" name="pwd"/>
-                <a href="#">비밀번호를 잊어버리셨나요?</a>
+                <p class="text-3xl mb-10">Sign in</p>
+                <input type="email" placeholder="이메일" name="email" id="signIn__email"/>
+                <input type="password" placeholder="비밀번호" name="pwd" id="signIn__pwd"/>
+                <p class="mt-6">비밀번호를 잊어버리셨나요?</p>
                 <button id="signIn__btn" class="focus:outline-none bg-red-500 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">로그인</button>
             </form>
         </div>
@@ -60,12 +73,12 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <p class="text-2xl mb-10">이미 회원이신가요?</p>
+                    <p class="text-4xl mb-10">이미 회원이신가요?</p>
                     <p>지금 바로 서비스를 이용하세요!</p>
                     <button class="bg-transparent border-white focus:outline-none border p-3  pl-10 pr-10 mt-16 rounded-full" id="signIn">로그인</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <p class="text-2xl mb-12">간편하게 가입하세요!</p>
+                    <p class="text-4xl mb-12">지금 가입하세요!</p>
                     <p>다양한 코인들의 정보와 뉴스를 간편하게 볼 수 있도록 제공합니다!</p>
                     <button class="bg-transparent border-white focus:outline-none border p-3 pl-10 pr-10 mt-16 rounded-full" id="signUp">가입하기</button>
                 </div>
