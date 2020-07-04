@@ -3,29 +3,6 @@
     box-sizing: border-box;
 }
 
-h2 {
-    text-align: center;
-}
-
-p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-}
-
-span {
-    font-size: 12px;
-}
-
-a {
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    margin: 15px 0;
-}
-
 button {
     letter-spacing: 1px;
     transition: transform 80ms ease-in;

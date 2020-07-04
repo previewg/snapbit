@@ -34,8 +34,8 @@ public class NewsController {
             requestEntity = RequestEntity.get(
                     new URI("https://openapi.naver.com/v1/search/news.json?display=50&sort=sim&query=" +
                             URLEncoder.encode("블록체인", "utf-8")))
-                    .header("X-Naver-Client-Id", "PP4F78Os1q39Iwoy1NOA")
-                    .header("X-Naver-Client-Secret", "yYnKdT5xGM")
+                    .header("X-Naver-Client-Id", "8a5GVRKUZiiYpJUdyT8A")
+                    .header("X-Naver-Client-Secret", "BTTR1jMrRr")
                     .build();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

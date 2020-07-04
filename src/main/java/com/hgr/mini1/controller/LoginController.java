@@ -5,9 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,6 +13,9 @@ import com.hgr.mini1.model.User;
 import com.hgr.mini1.repository.UserRepository;
 
 import lombok.Data;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Data
@@ -25,47 +26,56 @@ public class LoginController {
 	@Autowired
 	HttpSession session;
 
-	@PostMapping("/idCheck")
-	@ResponseBody
-	public String idCheck(@ModelAttribute User user, Model model) {
-		User result = userRepository.findByEmail(user.getEmail());
-		String msg = "";
-		if (result == null) {
-			msg = "1";
-
-		} else {
-			msg = "0";
-
-		}
-		return msg;
-
-	}
-
 	@GetMapping("/signIn")
 	public String signIn() {
 		return "signIn";
 	}
 
-	
+	@PostMapping("/signIn")
+	@ResponseBody
+	public Map<String, String> signInPost(User user) {
+		User dbUser = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
+		Map<String,String> result = new HashMap<>();
+
+		if (dbUser != null) {
+			session.setAttribute("user_info", dbUser);
+			result.put("verified","correct");
+			result.put("username",dbUser.getName());
+		}else{
+			result.put("verified","incorrect");
+			result.put("username","");
+		}
+		return result;
+	}
+
 	@PostMapping("/signUp")
-	public String signUpPost(@ModelAttribute User user, Model model) {
+	public String signUpPost(User user) {
 		userRepository.save(user);
 		return "signIn";
 	}
 
+	@PostMapping("/signUpVerify")
+	@ResponseBody
+	public String signUpVerify(User user) {
+		User result = userRepository.findByEmail(user.getEmail());
+		String verified = "";
+		if (result == null) {
+			verified = "isAvailable";
+		} else {
+			verified = "isExisted";
+		}
+		return verified;
+	}
+
 	@GetMapping("/signOut")
 	public String signOut() {
-		session.removeAttribute("user_info");
+		session.removeAttribute("userInfo");
 		return "redirect:/";
 	}
 
-	@PostMapping("/signIn")
-	public String signInPost(@ModelAttribute User user) {
-		User dbUser = userRepository.findByEmailAndPwd(user.getEmail(), user.getPwd());
-		if (dbUser != null) {
-			session.setAttribute("user_info", dbUser);
-		}
-		return "redirect:/";
+	@GetMapping("/callback")
+	public String callback(){
+		return "/callback";
 	}
 
 }

@@ -1,52 +1,79 @@
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
-
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
 });
-
 signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-var isPass = false;
+let isPass = false;
 
-$('[name=email]').blur(function() {
-	var email = $(this).val();
-	
+$('#userEmail').focus(function(){
+	$('#error_email').text("");
+})
+
+$('#userEmail').blur(function () {
+	let email = $(this).val();
+	console.log(email);
 	$.ajax({
-		url: 'idCheck',
+		url: '/signUpVerify',
 		type: 'post',
 		data: { 'email': email },
 		success: function(res) {
-			var msg = '';
-			if(res == '1') {
-				msg = '사용 가능한 이메일입니다.';
+			let msg = '';
+			if(res == 'isAvailable') {
+				msg = '사용 가능한 이메일입니다';
 				isPass = true;
 				$('#error_email').css("color", "blue");
 			} else {
-				msg = '중복 이메일입니다.';
+				msg = '이메일이 이미 존재합니다. 다른 이메일을 입력해주세요.';
 				isPass = false;
 				$('#error_email').css("color", "red");
-			} 
+			}
 			$('#error_email').text(msg);
 		}
 	});
-	
 });
 
-$('#signUpBtn').click(function() {
-	if(!isPass) {
-		alert('이미 사용중인 이메일입니다.');
+
+
+$('#signUp__btn').click(function() {
+	if(isPass) {
+		if(($("#userEmail").val())&&($("#userName").val())&&($("#userPwd").val())){
+			alert('입력 사항을 확인바랍니다.');
+		}else{
+			alert('이메일이 이미 존재합니다. 다른 이메일을 입력바랍니다.');
+		}
 		return false;
 	} else {
-		alert('가입을 축하 드립니다.');
+		$.ajax({
+			url: 'signUp',
+			type: 'post',
+			data: $("#signUp__form").serialize(),
+			success: function(res) {
+				alert('가입을 축하 드립니다. 지금 바로 로그인하세요!');
+				location = "/signIn";
+			}
+		})
 		return true;
 	}
+
 });
 
-$("#signIn").click(function() {
-	$("form").submit();
-	return false;
+$("#signIn__btn").click(function() {
+	$.ajax({
+		url: 'signIn',
+		type: 'post',
+		data: $("#signIn__form").serialize(),
+		success: function(res) {
+			if(res.get("verified")==="correct"){
+				alert(res.get("username")+" 님 반갑습니다!");
+				location = "/";
+			} else{
+				return false;
+			}
+		}
+	})
 });
