@@ -12,7 +12,7 @@ button:active {
     transform: scale(0.95);
 }
 
-form{
+#signUp__form,#signIn__form{
     background-color: #FFFFFF;
     display: flex;
     align-items: center;

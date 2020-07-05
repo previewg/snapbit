@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
-<nav class="flex h-20 items-center w-full border-b fixed z-30">
+<nav class="flex h-20 items-center w-full border-b fixed z-10 top-0">
     <div class="flex-grow flex justify-center">
         <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
 
@@ -19,7 +19,7 @@
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
            href="/">Home</a>
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/news">News</a>
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
     <div class="flex-grow flex justify-center transform">
@@ -47,13 +47,15 @@
 
         <!---------------------------------------signUp--------------------------------------->
         <div class="form-container sign-up-container">
-            <form id="signUp__form">
-                <p class="text-3xl mb-10">Create Account</p>
-                <input type="text" placeholder="이름" name="name" id="signUp__name"/>
-                <input type="email" placeholder="이메일" name="email" id="signUp__email"/>
+            <form id="signUp__form" action="/signUp">
+                <p class="text-3xl mb-5">계정 생성</p>
+                <input required type="text" placeholder="이름" name="name" id="signUp__name"/>
+                <input required type="email" placeholder="이메일" name="email" id="signUp__email"/>
                 <p id="error_email"></p>
-                <input type="password" placeholder="비밀번호 " name="pwd" id="signUp__pwd"/>
-                <button id="signUp__btn" class="focus:outline-none bg-blue-500 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">
+                <input required minlength="6" type="password" placeholder="비밀번호" name="pwd" id="signUp__pwd"/>
+                <input required type="password" placeholder="비밀번호 확인" name="pwd2" id="signUp__pwd2"/>
+                <p id="error_pwd"></p>
+                <button id="signUp__btn" class="focus:outline-none bg-blue-500 text-white rounded-full p-3 pl-10 pr-10 mt-5 uppercase">
                 	가입하기
                 </button>
             </form>
@@ -61,15 +63,15 @@
 
         <!---------------------------------------signIn--------------------------------------->
         <div class="form-container sign-in-container">
-            <form id="signIn__form">
-                <p class="text-3xl mb-10">Sign in</p>
-                <input type="email" placeholder="이메일" name="email" id="signIn__email"/>
-                <input type="password" placeholder="비밀번호" name="pwd" id="signIn__pwd"/>
+            <form id="signIn__form" >
+                <p class="text-3xl mb-10">시작하기</p>
+                <input required type="email" placeholder="이메일" name="email" id="signIn__email"/>
+                <input required type="password" placeholder="비밀번호" name="pwd" id="signIn__pwd"/>
                 <p class="mt-6">비밀번호를 잊어버리셨나요?</p>
                 <button id="signIn__btn" class="focus:outline-none bg-red-500 text-white rounded-full p-3 pl-10 pr-10 mt-10 uppercase">로그인</button>
             </form>
         </div>
-  
+
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
@@ -87,9 +89,11 @@
     </div>
 </section>
 
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="../js/signIn.js"></script>
 
+<!--Jquery CDN-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!--signIn JS-->
+<script src="../js/signIn.js"></script>
 
 </body>
 </html>

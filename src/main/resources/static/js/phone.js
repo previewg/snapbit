@@ -8,6 +8,8 @@ contentBlurred.appendChild(duplicate);
 var contentWrapper = document.querySelector('.content-wrapper'),
     translation;
 
+contentWrapper.get
+
 contentWrapper.addEventListener('scroll',function(){
     translation = 'translate3d(0,' + (-this.scrollTop + 'px') + ',0)';
     duplicate.style['-webkit-transform'] = translation;

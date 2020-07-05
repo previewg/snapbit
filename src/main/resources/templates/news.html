@@ -1,10 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
+
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
+</head>
+<body>
+<nav class="flex h-20 items-center w-full border-b fixed z-10 top-0">
+    <div class="flex-grow flex justify-center">
+        <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
+
+    </div>
+    <div class="justify-around flex-grow flex justify-between change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/news">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
+    </div>
+    <div class="flex-grow flex justify-center transform">
+        <form method="get" action="/signIn">
+            <ul th:if="${session.user_info} == null" >
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signin
+                </button>
+            </ul>
+            <ul th:if="${session.user_info} != null" class="flex">
+                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
+                <button th:action="@{/signOut}" method="get"
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signout
+                </button>
+            </ul>
+        </form>
+    </div>
+</nav>
+
+<section>
+
+</section>
+
+
+
+
+
+
 
 
 
 
 <footer class="h-64 bg-gray-200">
     여기가 footer
-
 </footer>
 
 
