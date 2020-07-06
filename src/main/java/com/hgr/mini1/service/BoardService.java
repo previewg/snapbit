@@ -73,9 +73,9 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-    private static final int BLOCK_PAGE_NUM_COUNT = 10;  // 블럭에 존재하는 페이지 번호 수
-    private static final int PAGE_POST_COUNT =3;       // 한 페이지에 존재하는 게시글 수
 
+    private static final int BLOCK_PAGE_NUM_COUNT = 10;  // 블럭에 존재하는 페이지 번호 수
+    private static final int PAGE_POST_COUNT =10;       // 한 페이지에 존재하는 게시글 수
 
     /*페이징*/
     @Transactional
@@ -87,15 +87,14 @@ public class BoardService {
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         for (BoardEntity boardEntity : boardEntities) {
-          /*  BoardDto boardDTO = BoardDto.builder()
+            BoardDto boardDTO = BoardDto.builder()
                     .id(boardEntity.getId())
                     .title(boardEntity.getTitle())
                     .content(boardEntity.getContent())
                     .author(boardEntity.getAuthor())
                     .createdDate(boardEntity.getCreatedDate())
-                    .build();*/
-            boardDtoList.add(this.convertEntityToDto(boardEntity));
-
+                    .build();
+            boardDtoList.add(boardDTO);
         }
 
         return boardDtoList;
@@ -128,7 +127,7 @@ public class BoardService {
 
 
         // 페이지 시작 번호 조정
-        curPageNum = (curPageNum <= 3) ? 1 : curPageNum - 2;
+        curPageNum = (curPageNum <= 10) ? 1 : curPageNum - 10;
 
         // 페이지 번호 할당
         for (int val = curPageNum, idx = 0; val <= blockLastPageNum; val++, idx++) {
