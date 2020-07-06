@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../css/list.css">
+
+</head>
+<body>
+<div class="page-title">
+    <div class="container">
+        <h3>게시글 작성</h3>
+    </div>
+</div>
+<div id="board-list">
+    <div class="container">
+        <table class="board-table">
+            <thead>
+            <form action="/post" method="post">
+                제목:
+                <input type="text" name="title"><br>
+                <input type="hidden" name="author" th:value="${session.user_info.nickname}"><br>
+                내용:
+                <textarea name="content"></textarea><br>
+
+                <input type="submit" value="글쓰기">
+            </form>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+
+

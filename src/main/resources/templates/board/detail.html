@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>  <!--AOS_Css-->
+
+</head>
+
+
+
+    <p>제목 : </p>
+    <h2 th:text="${boardDto.title}"></h2>
+    <br>
+    <p>작성자 : </p>
+    <h2 th:text="${boardDto.author}"></h2>
+    <br>
+    <p> 내용 : </p>
+    <p th:text="${boardDto.content}"></p>
+    <br>
+    <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
+    <br>
+
+    <!-- 수정/삭제 -->
+    <div>
+        <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+            <button>수정</button>
+        </a>
+
+        <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button id="delete-btn">삭제</button>
+        </form>
+    </div>
+    <!-- 변수 셋팅 -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var boardDto = /*[[${boardDto}]]*/ "";
+        /*]]>*/
+    </script>
+
+    <!-- script -->
+    <script th:inline="javascript" th:src="@{/js/board.js}"></script>
+
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <!--AOS JS-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <!--Nav bar 변경-->
+    <script src="../js/navbar.js"></script>
+
+</body>
+</html>
