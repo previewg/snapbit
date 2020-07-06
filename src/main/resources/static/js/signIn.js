@@ -66,36 +66,36 @@ $('#signUp__pwd2').on("propertychange change keyup paste input",
 
     });
 
-$('#signUp__btn').click(function () {
-    if(emailVerified && pwdVerified&&$('#signUp__name').val()) {
-        $.post("signUp", $("#signUp__form").serialize())
-        ,function(res) {
-            alert("가입을 축하 드립니다. 지금 바로 로그인하세요!" );
-        }
+$('#signUp__form').submit(function () {
+    if(emailVerified && pwdVerified) {
+        $.ajax({
+            url: '/signUp',
+            type: 'post',
+            data: $('#signUp__form').serialize(),
+            success: function (res) {
+                alert("가입을 축하드립니다! 지금 바로 로그인하세요");
+                location = "/signIn";
+            }})
+        return false;
     }else{
         alert("입력사항을 확인바랍니다.");
         return false;
     }
 });
 
-$("#signIn__btn").click(function () {
-    if (!(($("#signIn__email").val()) && ($("#signIn__pwd").val()))) {
-        alert('입력 사항을 확인바랍니다.');
-        return false;
-    } else {
-        $.ajax({
-            url: 'signIn',
-            type: 'post',
-            data: $("#signIn__form").serialize(),
-            success: function (res) {
-                if (res.verified === "correct") {
-                    alert(res.username + " 님 반갑습니다!");
-                    location = "/";
-                } else {
-                    alert("이메일 / 비밀번호를 확인바랍니다.");
-                    return false;
-                }
+$("#signIn__form").submit(function () {
+    $.ajax({
+        url: 'signIn',
+        type: 'post',
+        data: $("#signIn__form").serialize(),
+        success: function (res) {
+            if (res.verified === "correct") {
+                alert(res.username + " 님 반갑습니다!");
+                location = "/";
+            } else {
+                alert("이메일 / 비밀번호를 확인바랍니다.");
             }
-        });
-    }
+        }
+    })
+    return false;
 });

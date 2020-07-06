@@ -50,9 +50,10 @@ public class LoginController {
 	}
 
 	@PostMapping("/signUp")
+	@ResponseBody
 	public String signUpPost(User user) {
 		userRepository.save(user);
-		return "signIn";
+		return "success";
 	}
 
 	@PostMapping("/signUpVerify")
