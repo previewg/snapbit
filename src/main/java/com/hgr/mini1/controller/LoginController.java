@@ -70,9 +70,10 @@ public class LoginController {
 	}
 
 	@GetMapping("/signOut")
+	@ResponseBody
 	public String signOut() {
-		session.removeAttribute("userInfo");
-		return "signOut";
+		session.removeAttribute("user_info");
+		return "success";
 	}
 }
  

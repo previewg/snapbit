@@ -22,18 +22,22 @@
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/news">News</a>
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
-    <div class="flex-grow flex justify-center transform">
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
         <form method="get" action="/signIn">
-            <ul th:if="${session.user_info} == null" >
+            <ul>
                 <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Signin
                 </button>
             </ul>
-            <ul th:if="${session.user_info} != null" class="flex">
+        </form>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+        <form id="signOut">
+            <ul class="flex">
                 <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
-                <button th:action="@{/signOut}" method="get"
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Signout
                 </button>
             </ul>
@@ -44,7 +48,6 @@
 <!-- Main Section-->
 <section id="signIn__font" class="flex justify-center items-center flex-col h-screen">
     <div class="container" id="container">
-
         <!---------------------------------------signUp--------------------------------------->
         <div class="form-container sign-up-container">
             <form id="signUp__form" action="/signUp">
@@ -94,6 +97,20 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!--signIn JS-->
 <script src="../js/signIn.js"></script>
+<!--SignOut JS-->
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url:'signOut',
+            type: 'get',
+            success: function (res) {
+                if(res==="success"){
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";}
+            }})
+        return false;
+    })
+</script>
 
 </body>
 </html>

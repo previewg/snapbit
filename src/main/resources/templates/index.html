@@ -24,18 +24,21 @@
         <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">Board</a>
     </div>
 
-
-    <div class="flex-grow flex justify-center transform">
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
         <form method="get" action="/signIn">
-            <ul th:if="${session.user_info} == null" >
+            <ul>
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Signin
                 </button>
             </ul>
-            <ul th:if="${session.user_info} != null" class="flex">
+        </form>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+        <form id="signOut">
+            <ul class="flex">
                 <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
-                <button th:action="@{/signOut}" method="get"
+                <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
                     Signout
                 </button>
@@ -212,6 +215,21 @@
 </script>
 
 <!--<script src="../js/phone.js"></script>-->
+
+<!--SignOut JS-->
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url:'signOut',
+            type: 'get',
+            success: function (res) {
+                if(res==="success"){
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";}
+            }})
+        return false;
+    })
+</script>
 
 </body>
 </html>
