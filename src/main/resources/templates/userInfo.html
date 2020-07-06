@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
-    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css" >
     <link href="../css/userInfo.css" rel="stylesheet">  <!--tailwind_Css-->
-
+    <link rel="stylesheet" href="../css/tailwind.css" >
     <!--Google_Font-->
     <link rel="stylesheet" href="../css/font.css"/>
 </head>
@@ -26,7 +26,7 @@
         <form method="get" action="/signIn">
             <ul>
                 <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
                     Signin
                 </button>
             </ul>
@@ -37,7 +37,7 @@
             <ul class="flex">
                 <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
                 <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
                     Signout
                 </button>
             </ul>

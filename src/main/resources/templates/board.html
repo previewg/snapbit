@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="../css/tailwind.css">
-    <link rel="stylesheet" href="../css/pagination.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css" >
+    <link rel="stylesheet" href="../css/tailwind.css" >
     <!--Google_Font-->
     <link rel="stylesheet" href="../css/font.css"/>
 </head>
@@ -27,7 +26,7 @@
         <form method="get" action="/signIn">
             <ul>
                 <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
                     Signin
                 </button>
             </ul>
@@ -38,7 +37,7 @@
             <ul class="flex">
                 <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
                 <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
                     Signout
                 </button>
             </ul>
@@ -47,55 +46,58 @@
 </nav>
 
 
-<!-- board list area -->
-<section class="h-screen flex flex-col items-center mt-64">
+<!-- Board -->
+<section class="h-screen flex flex-col items-center mt-32 w-full">
+    <!-- Search Bar  -->
+    <article class="w-3/5 flex mt-20 justify-end h-16 text-lg items-center mb-6">
+        <form action="/board/search" method="GET" >
+            <input id="search" type="text" name="keyword" placeholder="검색어를 입력해주세요." value="" class="focus:outline-none border rounded py-1 px-4 shadow py-1 px-4">
+            <button type="submit" class="focus:outline-none bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow py-1 px-4">검색</button>
+        </form>
+        <a class="ml-12 bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow py-1 px-4" href="/board/write">글쓰기</a>
+    </article>
+
+    <!--Board List-->
     <article class="w-3/5">
         <table class="w-full">
             <thead>
-            <tr class="font-bold flex h-10">
+            <tr class="font-bold flex h-12 border-b mb-2">
                 <th style="flex-grow:1">번호</th>
                 <th style="flex-grow:10">제목</th>
                 <th style="flex-grow:2">작성자</th>
-                <th style="flex-grow:1">날짜</th>
+                <th style="flex-grow:3">날짜</th>
                 <th style="flex-grow:1">조회수</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:each="board : ${boardList}" class="text-gray-700 border-b h-10">
-                <td>
-                    <span th:text="${board.id}"></span>
+            <tr th:each="board : ${boardList}" class="rounded items-center flex focus:outline-none hover:bg-gray-100 text-gray-700 h-12 shadow mb-2">
+                <td style="flex-grow:1" class="text-center">
+                    <p th:text="${board.id}"></p>
                 </td>
-                <td>
+                <td style="flex-grow:10">
                     <a th:href="@{'/post/' + ${board.id}}">
-                        <span th:text="${board.title}"></span>
+                        <p th:text="${board.title}"></p>
                     </a>
                 </td>
-                <td>
+                <td style="flex-grow:2" class="text-center">
                     <a>
-                        <span th:text="${board.author}"></span>
+                        <p th:text="${board.author}" ></p>
                     </a>
                 </td>
-                <td>
-                    <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                <td style="flex-grow:3" class="text-center">
+                    <p th:text="${#temporals.format(board.createdDate, 'M월 d일 HH:mm')}"></p>
                 </td>
-                <td>
-                    <span>개발중</span>
+                <td style="flex-grow:1" class="text-center">
+                    <p>개발중</p>
                 </td>
 
             </tr>
             </tbody>
+
         </table>
     </article>
 
-    <!-- search  -->
-    <article class="w-full flex mt-20 justify-center">
-        <form action="/board/search" method="GET">
-            <input id="search" type="text" name="keyword" placeholder="검색어를 입력해주세요." value="">
-            <button type="submit" class="btn btn-dark">검색</button>
-        </form>
-        <a class="ml-40" href="write">글쓰기</a>
-    </article>
 </section>
 
 

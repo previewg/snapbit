@@ -82,7 +82,7 @@ public class BoardController {
 
 
 
-    @GetMapping("/write")
+    @GetMapping("/board/write")
     public String write() {
         return "board/write";
     }
