@@ -46,4 +46,22 @@ public class NewsController {
         Map<String, Object> result = entity.getBody();
         return result;
     }
+
+
+    @GetMapping("/getNewsDetails")
+    @ResponseBody
+    public Map<String, Object> getNewsDetails(String url){
+        RestTemplate rt = new RestTemplate();
+        RequestEntity requestEntity = null;
+        try {
+            requestEntity = RequestEntity.get(
+                    new URI(url))
+                    .build();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        ResponseEntity<Map> entity = rt.exchange(requestEntity, Map.class);
+        Map<String, Object> result = entity.getBody();
+        return result;
+    }
 }

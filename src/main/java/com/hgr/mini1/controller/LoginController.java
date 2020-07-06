@@ -56,10 +56,23 @@ public class LoginController {
 		return "success";
 	}
 
-	@PostMapping("/signUpVerify")
+	@PostMapping("/emailVerify")
 	@ResponseBody
-	public String signUpVerify(User user) {
+	public String emailVerify(User user) {
 		User result = userRepository.findByEmail(user.getEmail());
+		String verified = "";
+		if (result == null) {
+			verified = "isAvailable";
+		} else {
+			verified = "isExisted";
+		}
+		return verified;
+	}
+
+	@PostMapping("/nicknameVerify")
+	@ResponseBody
+	public String nicknameVerify(User user) {
+		User result = userRepository.findByNickname(user.getNickname());
 		String verified = "";
 		if (result == null) {
 			verified = "isAvailable";

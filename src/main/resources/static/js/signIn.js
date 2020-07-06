@@ -11,13 +11,25 @@ signInButton.addEventListener('click', () => {
 
 let emailVerified = false;
 let pwdVerified = false;
+let nickVerified = false;
+
+// $('#signUp__nickname').blur(function () {
+//     $('#error_nickname').css("display", "none");
+// })
+// $('#signUp__email').blur(function () {
+//     $('#error_email').css("display", "none");
+// })
+// $('#signUp__pwd2').blur(function () {
+//     $('#error_pwd').css("display", "none");
+// })
+
 
 $('#signUp__email').on("propertychange change keyup paste input",
     function () {
         let email = $(this).val();
         if (email !== "") {
             $.ajax({
-                url: '/signUpVerify',
+                url: '/emailVerify',
                 type: 'post',
                 data: {'email': email},
                 success: function (res) {
@@ -66,8 +78,39 @@ $('#signUp__pwd2').on("propertychange change keyup paste input",
 
     });
 
+$('#signUp__nickname').on("propertychange change keyup paste input",
+    function () {
+        let nickname = $(this).val();
+        if (nickname !== "") {
+            $.ajax({
+                url: '/nicknameVerify',
+                type: 'post',
+                data: {'nickname': nickname},
+                success: function (res) {
+                    let msg = '';
+                    if (res == 'isAvailable') {
+                        msg = '사용 가능한 닉네임입니다.';
+                        nickVerified = true;
+                        $('#error_nickname').css("display","block");
+                        $('#error_nickname').css("color", "blue");
+                    } else {
+                        msg = '닉네임이 이미 존재합니다.';
+                        nickVerified = false;
+                        $('#error_nickname').css("display","block");
+                        $('#error_nickname').css("color", "red");
+                    }
+                    $('#error_nickname').text(msg);
+                }
+            })
+        }else{
+            nickVerified = false;
+            $('#error_nickname').css("display","none");
+        }
+        ;
+    });
+
 $('#signUp__form').submit(function () {
-    if(emailVerified && pwdVerified) {
+    if(emailVerified && pwdVerified&&nickVerified) {
         $.ajax({
             url: '/signUp',
             type: 'post',

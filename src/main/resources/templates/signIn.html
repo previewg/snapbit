@@ -52,12 +52,16 @@
         <div class="form-container sign-up-container">
             <form id="signUp__form" action="/signUp">
                 <p class="text-3xl mb-5">계정 생성</p>
-                <input required type="text" placeholder="이름" name="name" id="signUp__name"/>
+                <div class="flex justify-between">
+                    <input required type="text" placeholder="이름" name="name" id="signUp__name" style="width: 49%"/>
+                    <input required type="text" placeholder="닉네임" name="nickname" id="signUp__nickname" style="width: 49%"/>
+                </div>
+                <p class="text-xs" id="error_nickname"></p>
                 <input required type="email" placeholder="이메일" name="email" id="signUp__email"/>
-                <p id="error_email"></p>
+                <p class="text-xs" id="error_email"></p>
                 <input required minlength="6" type="password" placeholder="비밀번호" name="pwd" id="signUp__pwd"/>
                 <input required type="password" placeholder="비밀번호 확인" name="pwd2" id="signUp__pwd2"/>
-                <p id="error_pwd"></p>
+                <p class="text-xs" id="error_pwd"></p>
                 <button id="signUp__btn" type='submit' class="focus:outline-none bg-blue-500 text-white rounded-full p-3 pl-10 pr-10 mt-5 uppercase">
                 	가입하기
                 </button>

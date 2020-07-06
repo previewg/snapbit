@@ -19,5 +19,6 @@ public class User {
     String email;
     String pwd;
     String name;
+    String nickname;
 
 }
