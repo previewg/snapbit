@@ -17,15 +17,15 @@
             for(var i = 0; i < 4; i++) {
                 var item = items[i];
                 var title = item.snippet.title;
-                var img = item.snippet.thumbnails.default.url;
+                // var img = item.snippet.thumbnails.default.url;
                 var videoId = item.id.videoId;
-                html += title;
-
-
-                html += `<iframe id="player" type="text/html" width="640" height="360"\
+                html += `<div class="flex-col mb-3 items-center">\
+                 <iframe id="player" type="text/html" width="640" height="360"\
                  src="http://www.youtube.com/embed/${videoId}"\
                  allowfullscreen="true"\
-                 frameborder="0"></iframe>`;
+                 frameborder="0"></iframe>\
+                 <p>${title}</p>\
+                 </div>`;
             }
 
             $('#youtube1').html(html);

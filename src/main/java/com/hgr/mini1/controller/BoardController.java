@@ -98,6 +98,7 @@ public class BoardController {
     @PostMapping("/board/comment")
     public String saveComment(CommentDto commentDto){
         boardService.saveComment(commentDto);
+        System.out.println("여기는 도달");
         return "redirect:/board";
     }
 }

@@ -62,6 +62,7 @@ public class BoardService {
                 .content(boardEntity.getContent())
                 .author(boardEntity.getAuthor())
                 .hit(boardEntity.getHit())
+                .recommend(boardEntity.getRecommend())
                 .createdDate(boardEntity.getCreatedDate())
                 .build();
         return boardDTO;
@@ -151,8 +152,8 @@ public class BoardService {
     }
 
     @Transactional
-    public Long saveComment(CommentDto commentDto) {
-        return commentRepository.save(commentDto.toEntity()).getId();
+    public void saveComment(CommentDto commentDto) {
+        commentRepository.save(commentDto.toEntity());
     }
 
 
