@@ -16,6 +16,7 @@ public class BoardDto {
     private String title;
     private String content;
     private int hit;
+    private int recommend;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
@@ -26,18 +27,20 @@ public class BoardDto {
                 .title(title)
                 .content(content)
                 .hit(hit)
+                .recommend(recommend)
                 .build();
         return boardEntity;
     }
 
 
     @Builder
-    public BoardDto(Long id, String title, String content, String author, int hit, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+    public BoardDto(Long id, String title, String content, String author, int hit,int recommend, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
         this.hit = hit;
+        this.recommend = recommend;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
     }

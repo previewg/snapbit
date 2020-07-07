@@ -89,7 +89,7 @@
             <p th:text="${board.author}" style="width:10%" class="text-center"></p>
             <p th:text="${#temporals.format(board.createdDate, 'M월 d일 HH:mm')}" style="width:20%"
                class="text-center"></p>
-            <p style="width:10%" class="text-center">개발중</p>
+            <p style="width:10%" class="text-center" th:text="${board.hit}"></p>
         </div>
     </article>
 
@@ -106,14 +106,21 @@
         <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">다음</a>
         <a class="ml-3" th:href="@{'/board?page='+ ${#lists.size(pageList)}}">마지막</a>
 
-        <a style="right:20%"class="absolute text-gray-800 flex items-center"
-           href="/board/write">
+        <button id="write" style="right:20%"class="absolute text-gray-800 flex items-center">
             <img src="../img/write.svg" class="h-3 w-3 scale-110 mr-1">
             <p>글쓰기</p>
-        </a>
+        </button>
     </article>
 </section>
 
+
+<script>
+    $('#write').onclick(function () {
+        $.ajax({
+
+        })
+    })
+</script>
 
 </body>
 

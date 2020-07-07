@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+<script>
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAtcv6rWNVW4cGnF5fzPTtSffCp-br6dpk&maxResults=8',
+        data: {'q': '비트코인'},
+        success: function(res) {
+            var items = res.items;
+            var html = '';
+            for(var i = 0; i < 4; i++) {
+                var item = items[i];
+                var title = item.snippet.title;
+                var img = item.snippet.thumbnails.default.url;
+                var videoId = item.id.videoId;
+                html += title;
+
+
+                html += `<iframe id="player" type="text/html" width="640" height="360"\
+                 src="http://www.youtube.com/embed/${videoId}"\
+                 allowfullscreen="true"\
+                 frameborder="0"></iframe>`;
+            }
+
+            $('#youtube1').html(html);
+
+        }
+
+    })
+
+</script>
+</body>
+</html>

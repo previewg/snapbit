@@ -38,10 +38,10 @@ public class BoardController {
 
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no, Model model) {
+        boardService.increseHit(no);
         BoardDto boardDTO = boardService.getPost(no);
-
         model.addAttribute("boardDto", boardDTO);
-        return "board/detail.html";
+        return "board/detail";
     }
 
     @GetMapping("/post/edit/{no}")
@@ -79,9 +79,7 @@ public class BoardController {
         model.addAttribute("pageList", pageList);
         return "board";
     }
-
-
-
+    
     @GetMapping("/board/write")
     public String write() {
         return "board/write";
@@ -92,4 +90,10 @@ public class BoardController {
         boardService.savePost(boardDto);
         return "redirect:/board";
     }
+    
+    
+    
+    // recommend 올라가는 로직 만들어야함
+    // recommend 올라가는 로직 만들어야함
+    // recommend 올라가는 로직 만들어야함
 }

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
     <link rel="stylesheet" href="../css/tailwind.css">
     <!--Google_Font-->
     <link rel="stylesheet" href="../css/font.css"/>
-
 </head>
+<body>
 <nav class="flex h-20 items-center w-full border-b z-10 top-0">
     <div class="flex-grow flex justify-center">
         <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
@@ -46,30 +45,58 @@
     </div>
 </nav>
 
+<section style="background-image: url(../img/detail2.jpg); height: 350px"
+         class="w-full flex flex-col items-center justify-center">
+    <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10" style="width: 340px">
+        <p class="mt-2">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    </div>
+    <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
+</section>
 
-<p>제목 : </p>
-<h2 th:text="${boardDto.title}"></h2>
-<br>
-<p>작성자 : </p>
-<h2 th:text="${boardDto.author}"></h2>
-<br>
-<p> 내용 : </p>
-<p th:text="${boardDto.content}"></p>
-<br>
-<p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
-<br>
+<section class="h-screen flex flex-col mt-4 w-full">
+    <!-- Board List -->
+    <article class="w-1/2 ml-40 border-b">
+        <div class="border-b mb-2 flex flex-col h-48 justify-around">
+            <p th:text="${boardDto.title}" class="font-bold text-4xl"></p>
 
-<!-- 수정/삭제 -->
-<div>
-    <a th:href="@{'/post/edit/' + ${boardDto.id}}">
-        <button>수정</button>
-    </a>
+            <div class="flex text-gray-600">
+                <p th:text="|조회수 ${boardDto.hit} 회|" class="mr-8"></p>
+                <p th:text="${#temporals.format(boardDto.createdDate, 'M월 d일 HH:mm')}"></p>
+            </div>
+        </div>
+        <div class="flex flex-col w-3/4 mb-8 mt-8">
+            <p class="font-bold text-2xl mb-8" th:text="${boardDto.author}"></p>
+            <p class="text-xl" th:text="${boardDto.content}"></p>
+        </div>
+    </article>
 
-    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
-        <input type="hidden" name="_method" value="delete"/>
-        <button id="delete-btn">삭제</button>
-    </form>
-</div>
+    <article class="w-1/2 ml-40 mt-4 flex flex-col">
+        <p class="text-xl font-bold mb-3">댓글</p>
+        <input id="comment" type="text" class="text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" value="" placeholder="댓글을 입력하세요">
+        <div class="flex justify-end mt-2">
+            <button class="w-12 h-10 hover:bg-gray-200" id="comment__delete" onclick="cancleComment()">취소</button>
+            <div th:if="${session.user_info} == null">
+                <button class="w-12 h-10 hover:bg-gray-200" disabled style="cursor: not-allowed">댓글</button>
+            </div>
+            <div th:if="${session.user_info} != null">
+                <button class="w-12 h-10 hover:bg-gray-200" id="comment__submit" >댓글</button>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!--&lt;!&ndash; 수정/삭제 &ndash;&gt;-->
+<!--<div>-->
+<!--    <a th:href="@{'/post/edit/' + ${boardDto.id}}">-->
+<!--        <button>수정</button>-->
+<!--    </a>-->
+<!--    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">-->
+<!--        <input type="hidden" name="_method" value="delete"/>-->
+<!--        <button id="delete-btn">삭제</button>-->
+<!--    </form>-->
+<!--</div>-->
 <!-- 변수 셋팅 -->
 <script th:inline="javascript">
     /*<![CDATA[*/
@@ -79,14 +106,9 @@
 
 <!-- script -->
 <script th:inline="javascript" th:src="@{/js/board.js}"></script>
-
-
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<!--AOS JS-->
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>AOS.init();</script>
-<!--Nav bar 변경-->
-<script src="../js/navbar.js"></script>
-
+<script>
+    function cancleComment(){ $('#comment').val('')}
+</script>
 </body>
 </html>

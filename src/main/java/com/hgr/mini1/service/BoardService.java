@@ -56,12 +56,19 @@ public class BoardService {
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
                 .author(boardEntity.getAuthor())
+                .hit(boardEntity.getHit())
                 .createdDate(boardEntity.getCreatedDate())
                 .build();
-
         return boardDTO;
     }
 
+    public void increseHit (Long id) {
+        boardRepository.increaseHit(id);
+    }
+
+    public void increaseRecommend (Long id) {
+        boardRepository.increaseRecommend(id);
+    }
 
     @Transactional
     public Long savePost(BoardDto boardDto) {
@@ -92,6 +99,8 @@ public class BoardService {
                     .title(boardEntity.getTitle())
                     .content(boardEntity.getContent())
                     .author(boardEntity.getAuthor())
+                    .hit(boardEntity.getHit())
+                    .recommend(boardEntity.getRecommend())
                     .createdDate(boardEntity.getCreatedDate())
                     .build();
             boardDtoList.add(boardDTO);

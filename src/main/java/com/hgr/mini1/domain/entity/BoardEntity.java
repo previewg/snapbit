@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -26,16 +27,19 @@ public class BoardEntity extends TimeEntity {
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
-    @Column(length = 100, nullable = false)
+
+    @ColumnDefault("0")
     private int hit;
+    private int recommend;
 
     @Builder
-    public BoardEntity(Long id, String title, String content, String author, int hit) {
+    public BoardEntity(Long id, String title, String content, String author, int hit, int recommend) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
         this.hit = hit;
+        this.recommend = recommend;
     }
 
 }
