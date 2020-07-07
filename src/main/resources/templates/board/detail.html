@@ -3,53 +3,90 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
-    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>  <!--AOS_Css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
+    <link rel="stylesheet" href="../css/tailwind.css">
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
 
 </head>
+<nav class="flex h-20 items-center w-full border-b z-10 top-0">
+    <div class="flex-grow flex justify-center">
+        <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
 
-
-
-    <p>제목 : </p>
-    <h2 th:text="${boardDto.title}"></h2>
-    <br>
-    <p>작성자 : </p>
-    <h2 th:text="${boardDto.author}"></h2>
-    <br>
-    <p> 내용 : </p>
-    <p th:text="${boardDto.content}"></p>
-    <br>
-    <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
-    <br>
-
-    <!-- 수정/삭제 -->
-    <div>
-        <a th:href="@{'/post/edit/' + ${boardDto.id}}">
-            <button>수정</button>
-        </a>
-
-        <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
-            <input type="hidden" name="_method" value="delete"/>
-            <button id="delete-btn">삭제</button>
+    </div>
+    <div class="justify-around flex-grow flex justify-between change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/news">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/board">Board</a>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
+        <form method="get" action="/signIn">
+            <ul>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signin
+                </button>
+            </ul>
         </form>
     </div>
-    <!-- 변수 셋팅 -->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var boardDto = /*[[${boardDto}]]*/ "";
-        /*]]>*/
-    </script>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+        <form id="signOut">
+            <ul class="flex">
+                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signout
+                </button>
+            </ul>
+        </form>
+    </div>
+</nav>
 
-    <!-- script -->
-    <script th:inline="javascript" th:src="@{/js/board.js}"></script>
+
+<p>제목 : </p>
+<h2 th:text="${boardDto.title}"></h2>
+<br>
+<p>작성자 : </p>
+<h2 th:text="${boardDto.author}"></h2>
+<br>
+<p> 내용 : </p>
+<p th:text="${boardDto.content}"></p>
+<br>
+<p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
+<br>
+
+<!-- 수정/삭제 -->
+<div>
+    <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+        <button>수정</button>
+    </a>
+
+    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button id="delete-btn">삭제</button>
+    </form>
+</div>
+<!-- 변수 셋팅 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var boardDto = /*[[${boardDto}]]*/ "";
+    /*]]>*/
+</script>
+
+<!-- script -->
+<script th:inline="javascript" th:src="@{/js/board.js}"></script>
 
 
-    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-    <!--AOS JS-->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <!--Nav bar 변경-->
-    <script src="../js/navbar.js"></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<!--AOS JS-->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init();</script>
+<!--Nav bar 변경-->
+<script src="../js/navbar.js"></script>
 
 </body>
 </html>
