@@ -1,11 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="../css/list.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
+    <link rel="stylesheet" href="../css/tailwind.css">
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
+<nav class="flex h-20 items-center w-full border-b z-10 top-0">
+    <div class="flex-grow flex justify-center">
+        <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
+
+    </div>
+    <div class="justify-around flex-grow flex justify-between change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/news">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/board">Board</a>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
+        <form method="get" action="/signIn">
+            <ul>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signin
+                </button>
+            </ul>
+        </form>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+        <form id="signOut">
+            <ul class="flex">
+                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
+                <button
+                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                    Signout
+                </button>
+            </ul>
+        </form>
+    </div>
+</nav>
+
+<section style="background-image: url(../img/write.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
+    <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 340px">
+        <p class="mt-2">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    </div>
+    <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
+</section>
+
+
+
+
+
+
+
+
 <div class="page-title">
     <div class="container">
         <h3>게시글 작성</h3>

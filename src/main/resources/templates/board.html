@@ -45,9 +45,17 @@
     </div>
 </nav>
 
+<section style="background-image: url(../img/bitcoin2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
+    <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 340px">
+        <p class="mt-2">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    </div>
+    <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
+</section>
 
 <!-- Board -->
-<section class="h-screen flex flex-col items-center mt-32 w-full">
+<section class="h-screen flex flex-col items-center mt-4 w-full">
     <!-- Search Bar -->
     <article class="w-3/5 flex mt-20 justify-end h-16 text-lg items-center mb-6">
         <form action="/board/search" method="GET" class="flex items-center">
@@ -73,7 +81,7 @@
         </div>
 
         <div th:each="board : ${boardList}" style="font-weight: 300"
-             class="w-full items-center flex focus:outline-none hover:bg-gray-100 text-gray-600 h-16 border-b text-center">
+             class="w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
             <p style="width:10%" class="text-center" th:text="${board.id}"></p>
             <div style="width:50%;text-align: left">
                 <a th:href="@{'/post/' + ${board.id}}" th:text="${board.title}"></a>
@@ -95,7 +103,7 @@
                 <a th:href="@{'/board?page=' + ${pageNum}}">[[${pageNum}]]</a>
             </div>
         </div>
-        <a class="ml-3" th:href="@{'/board?page='+ ${#lists.size(pageList)}}">다음</a>
+        <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">다음</a>
         <a class="ml-3" th:href="@{'/board?page='+ ${#lists.size(pageList)}}">마지막</a>
 
         <a style="right:20%"class="absolute text-gray-800 flex items-center"
@@ -105,9 +113,6 @@
         </a>
     </article>
 </section>
-
-
-<!--page number -->
 
 
 </body>
