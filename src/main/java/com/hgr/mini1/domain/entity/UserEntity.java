@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 /*파라미터가 없는 기본생성자를 추가하는 어노테이션 , JPA를 사용하기 위해
@@ -17,6 +18,7 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(length = 100, nullable = false)
@@ -30,6 +32,9 @@ public class UserEntity {
 
     @Column(length = 100, nullable = false)
     private String nickname;
+
+    @OneToMany(mappedBy = "userEntity")
+    private Set<CommentEntity> commentEntities;
 
     @Builder
     public UserEntity(Long id, String email, String pwd, String name, String nickname) {

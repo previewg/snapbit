@@ -2,6 +2,7 @@ package com.hgr.mini1.controller;
 
 
 import com.hgr.mini1.dto.BoardDto;
+import com.hgr.mini1.dto.CommentDto;
 import com.hgr.mini1.repository.BoardRepository;
 import com.hgr.mini1.service.BoardService;
 import lombok.AllArgsConstructor;
@@ -17,14 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 /* Repository를 주입하기 위해 사용 */
 public class BoardController {
-    @Autowired
-    BoardRepository boardRepository;
-
     private BoardService boardService;
-
-    /*페이지 */
-
-
 
     /*검색기능*/
     @GetMapping("/board/search")
@@ -96,10 +90,14 @@ public class BoardController {
         boardService.savePost(boardDto);
         return "redirect:/board";
     }
-    
-    
-    
+
     // recommend 올라가는 로직 만들어야함
     // recommend 올라가는 로직 만들어야함
     // recommend 올라가는 로직 만들어야함
+
+    @PostMapping("/board/comment")
+    public String saveComment(CommentDto commentDto){
+        boardService.saveComment(commentDto);
+        return "redirect:/board";
+    }
 }

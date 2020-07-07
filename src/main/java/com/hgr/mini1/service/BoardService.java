@@ -2,7 +2,9 @@ package com.hgr.mini1.service;
 
 import com.hgr.mini1.domain.entity.BoardEntity;
 import com.hgr.mini1.dto.BoardDto;
+import com.hgr.mini1.dto.CommentDto;
 import com.hgr.mini1.repository.BoardRepository;
+import com.hgr.mini1.repository.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @Service
 public class BoardService {
     private BoardRepository boardRepository;
+    private CommentRepository commentRepository;
 
 
 
@@ -113,7 +116,6 @@ public class BoardService {
 
     @Transactional
     public Long getBoardCount() {
-
         return boardRepository.count();
     }
 
@@ -148,6 +150,10 @@ public class BoardService {
         return pageList;
     }
 
+    @Transactional
+    public Long saveComment(CommentDto commentDto) {
+        return commentRepository.save(commentDto.toEntity()).getId();
+    }
 
 
 }

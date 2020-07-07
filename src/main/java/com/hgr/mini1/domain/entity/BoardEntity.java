@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 /*파라미터가 없는 기본생성자를 추가하는 어노테이션 , JPA를 사용하기 위해
@@ -17,6 +18,7 @@ import javax.persistence.*;
 public class BoardEntity extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_id")
     private Long id;
 
     @Column(length = 100, nullable = false)
@@ -31,6 +33,9 @@ public class BoardEntity extends TimeEntity {
     @ColumnDefault("0")
     private int hit;
     private int recommend;
+
+    @OneToMany(mappedBy = "boardEntity")
+    private Set<CommentEntity> commentEntities;
 
     @Builder
     public BoardEntity(Long id, String title, String content, String author, int hit, int recommend) {
