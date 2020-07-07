@@ -64,6 +64,12 @@ public class BoardController {
         return "redirect:/board";
     }
 
+    @GetMapping("/post/like/{no}")
+    public String recommend(@PathVariable("no") Long no){
+        boardService.increaseRecommend(no);
+        return "redirect:/post/{no}";
+    }
+
     /* 게시글 목록*/
 
     @GetMapping("/board")

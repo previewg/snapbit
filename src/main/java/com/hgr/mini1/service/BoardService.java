@@ -42,6 +42,8 @@ public class BoardService {
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
                 .author(boardEntity.getAuthor())
+                .hit(boardEntity.getHit())
+                .recommend(boardEntity.getHit())
                 .createdDate(boardEntity.getCreatedDate())
                 .build();
     }

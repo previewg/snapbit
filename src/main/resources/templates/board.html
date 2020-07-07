@@ -106,21 +106,32 @@
         <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">다음</a>
         <a class="ml-3" th:href="@{'/board?page='+ ${#lists.size(pageList)}}">마지막</a>
 
-        <button id="write" style="right:20%"class="absolute text-gray-800 flex items-center">
-            <img src="../img/write.svg" class="h-3 w-3 scale-110 mr-1">
-            <p>글쓰기</p>
-        </button>
+        <div th:if="${session.user_info != null}">
+            <form action="/board/write" method="get">
+                <button type="submit" style="right:20%"class="focus:outline-none absolute text-gray-800 flex items-center">
+                    <img src="../img/write.svg" class="h-3 w-3 scale-110 mr-1">
+                    <p>글쓰기</p>
+                </button>
+            </form>
+        </div>
+
+        <div th:if="${session.user_info == null}">
+            <button type="button" onclick="userVerify()" style="right:20%"class="focus:outline-none absolute text-gray-800 flex items-center">
+                <img src="../img/write.svg" class="h-3 w-3 scale-110 mr-1">
+                <p>글쓰기</p>
+            </button>
+        </div>
     </article>
 </section>
 
 
+<!-- User Verifying JS for writing post -->
 <script>
-    $('#write').onclick(function () {
-        $.ajax({
-
-        })
-    })
+    function userVerify() {
+        alert("로그인 후 이용바랍니다.");
+    }
 </script>
+
 
 </body>
 
