@@ -30,9 +30,8 @@ public class BoardEntity extends TimeEntity {
     private int hit;
     private int recommend;
 
-    @OneToMany(fetch =FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
-
 
     @Builder
     public BoardEntity(Long id,String title, String content, String author, int hit, int recommend) {

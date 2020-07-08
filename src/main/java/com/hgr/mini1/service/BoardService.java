@@ -54,7 +54,6 @@ public class BoardService {
         return CommentDto.builder()
                 .id(commentEntity.getId())
                 .comment(commentEntity.getComment())
-                .createdDate(commentEntity.getCreatedDate())
                 .build();
     }
 
@@ -158,9 +157,8 @@ public class BoardService {
     }
 
     @Transactional
-    public void saveComment(CommentDto commentDto) {
-        commentRepository.save(commentDto.toEntity());
-        BoardEntity boardEntity = new BoardEntity();
+    public void saveComment(CommentDto commentDto,long board_id) {
+        BoardEntity boardEntity = boardRepository.findById(board_id).get();
         boardEntity.getCommentEntityList().add(commentDto.toEntity());
     }
 

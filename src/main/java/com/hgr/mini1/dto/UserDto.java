@@ -1,13 +1,10 @@
 package com.hgr.mini1.dto;
 
 
-import com.hgr.mini1.domain.entity.BoardEntity;
 import com.hgr.mini1.domain.entity.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

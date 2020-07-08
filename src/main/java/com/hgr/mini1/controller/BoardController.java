@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -88,8 +89,8 @@ public class BoardController {
     }
 
     @PostMapping("/board/comment")
-    public String saveComment(CommentDto commentDto,@RequestParam long board_id){
-        boardService.saveComment(commentDto);
+    public String saveComment(CommentDto commentDto,long board_id){
+        boardService.saveComment(commentDto,board_id);
         return "redirect:/post/" + board_id;
     }
 }

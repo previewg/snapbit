@@ -84,10 +84,10 @@
         <div th:if="${session.user_info} != null">
             <form action="/board/comment" method="post">
                 <input type="hidden" name="board_id" th:value="${boardDto.id}">
-                <input required name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
+                <input name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
                 <div class="flex justify-end mt-2">
                     <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" id="comment__cancle" onclick="commentCancle()">취소</button>
-                    <button class="w-12 h-10 hover:bg-gray-200 outline-none" type="submit">댓글</button>
+                    <button class="w-12 h-10 hover:bg-gray-200 outline-none">댓글</button>
                 </div>
             </form>
         </div>
@@ -103,13 +103,18 @@
     </article>
 </section>
 
-<section class="h-screen flex flex-col mt-4 w-full">
+<section class="h-screen flex flex-col mt-4 w-full" th:if="${commentDtoList} != null">
     <article class="w-1/2 ml-40">
         <div th:each="comment : ${commentDtoList}" style="font-weight: 300"
              class="w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
             <p th:text="${comment.id}"></p>
             <p th:text="${comment.comment}"></p>
         </div>
+    </article>
+</section>
+
+<section class="h-screen flex flex-col mt-4 w-full" th:if="${commentDtoList} == null">
+    <article class="w-1/2 ml-40">
     </article>
 </section>
 
