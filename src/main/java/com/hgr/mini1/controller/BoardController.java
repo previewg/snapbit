@@ -74,6 +74,7 @@ public class BoardController {
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
+        model.addAttribute("nowPage",pageNum );
         return "board";
     }
     

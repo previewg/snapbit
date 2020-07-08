@@ -148,17 +148,21 @@ public class BoardService {
         System.out.println(totalLastPageNum);
         System.out.println(blockLastPageNum);
 
+        if(curPageNum >10) {
+            curPageNum = (int) (curPageNum / 10) * 10 + 1;
 
-        // 페이지 시작 번호 조정
-        curPageNum = (curPageNum <= 10) ? 1 : curPageNum - 10;
-
-        // 페이지 번호 할당
-        for (int val = curPageNum, idx = 0; val <= blockLastPageNum; val++, idx++) {
-            pageList[idx] = val;
+            // 페이지 번호 할당
+            for (int val = curPageNum, idx = 0; val <= blockLastPageNum; val++, idx++) {
+                pageList[idx] = val;
+            }
+        }else{
+            for(int val = 1, idx = 0; val <=curPageNum; val++, idx++){
+                pageList[idx] =val;
+            }
         }
-
         return pageList;
     }
+
 
     @Transactional
     public void saveComment(CommentDto commentDto,long board_id) {

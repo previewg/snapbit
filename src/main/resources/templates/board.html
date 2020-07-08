@@ -97,13 +97,17 @@
     <!-- PageNavigation Bar -->
     <article class="flex justify-center items-center mt-10 text-lg w-3/5 text-gray-500">
         <a href="?page=1" class="mr-3 "> 처음</a>
-        <a href="?page=1" class="mr-3 "> 이전</a>
+
+        <a class="mr-3" th:if="${nowPage} <= 1" hidden>이전</a>
+        <a class="mr-3" th:unless="${nowPage}<=1" th:href="@{'/board?page=' + ${nowPage -1}}">이전 </a>
+
+
         <div th:each="pageNum : ${pageList}" th:inline="text">
             <div th:if="${pageNum}!=null" class="flex w-8 h-8 justify-center items-center bg-blue-700 text-white">
                 <a th:href="@{'/board?page=' + ${pageNum}}">[[${pageNum}]]</a>
             </div>
         </div>
-        <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">다음</a>
+        <a class="ml-3" th:href="@{'/board?page='+ ${nowPage+1}}">다음</a>
         <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">마지막</a>
 
         <div th:if="${session.user_info != null}">
