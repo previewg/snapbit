@@ -12,7 +12,7 @@ button:active {
     transform: scale(0.95);
 }
 
-#userInfo__main,#userInfo__info{
+#userInfo__main, #userInfo__info{
     background-color: #FFFFFF;
     display: flex;
     align-items: center;

@@ -12,69 +12,97 @@
     <link rel="stylesheet" href="../css/background.css"/>
 </head>
 <body>
-<nav id="navbar" class="flex h-20 items-center w-full top-0 z-10 fixed">
-    <div class="flex-grow flex justify-center">
-        <a class="text-4xl text-white font-bold change" href="/">SNAPBIT</a>
 
-    </div>
-    <div class="justify-around flex-grow flex justify-between text-white change text-lg">
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/">Home</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1">About</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/news">News</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/board">Board</a>
-    </div>
+<!-- 첫 메인 화면-->
+<section id="main">
+    <nav id="navbar" class="flex h-20 items-center w-full top-0 z-10 fixed">
+        <div class="flex-grow flex justify-center">
+            <a class="text-4xl text-white font-bold change" href="/">SNAPBIT</a>
 
-    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
-        <form method="get" action="/signIn">
-            <ul>
-                <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
-                    Signin
-                </button>
-            </ul>
-        </form>
-    </div>
-    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
-        <form id="signOut">
-            <ul class="flex">
-                <p th:text="${session.user_info.name}" class="text-lg text-white mr-5"></p>
-                <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
-                    Signout
-                </button>
-            </ul>
-        </form>
-    </div>
-</nav>
+        </div>
+        <div class="justify-around flex-grow flex justify-between text-white change text-lg">
+            <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+               href="/">Home</a>
+            <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/contents">Contents</a>
+            <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+               href="/news">News</a>
+            <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+               href="/board">Board</a>
+        </div>
 
+        <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
+            <form method="get" action="/signIn">
+                <ul>
+                    <button
+                            class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
+                        Signin
+                    </button>
+                </ul>
+            </form>
+        </div>
+        <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+            <form id="signOut">
+                <ul class="flex">
+                    <div class="flex items-center">
+                        <a href="/userInfo">
+                            <img src="../img/userIcon.svg" class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                        </a>
+                        <p th:text="|${session.user_info.nickname}님|" class="text-lg text-white mr-5"></p>
+                        <button
+                                class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                            Signout
+                        </button>
+                    </div>
+                </ul>
+            </form>
+        </div>
+    </nav>
 
-<!--Phone News Section-->
-<section class="h-screen flex justify-start items-center">
-    <p class="ml-10 text-lg text-white absolute">아래로 스크롤 해보세요!</p>
+    <!-- 휴대폰 뉴스 -->
+    <section class="h-screen flex justify-start items-center">
+        <p class="ml-10 text-lg text-white absolute">아래로 스크롤 해보세요!</p>
 
-    <div class="phone flex justify-center absolute items-center"
-         style="background-image: url(../img/iphone11.png);background-size:100% 100%;width: 1000px;height: 900px">
-        <div class="screen">
-            <div class="content-wrapper">
-                <div class="content">
-                    <ol class="messages">
-                    </ol>
+        <div class="phone flex justify-center absolute items-center"
+             style="background-image: url(../img/iphone11.png);background-size:100% 100%;width: 1000px;height: 900px">
+            <div class="screen">
+                <div class="content-wrapper">
+                    <div class="content">
+                        <ol class="messages">
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <article class="flex-col items-center justify-center flex"
-             style="-webkit-font-smoothing: antialiased;margin-left: 50%">
-        <p class="text-6xl text-white mb-20 font-bold">암호화폐, 블록체인 정보를</p>
-        <p class="text-4xl text-white mb-20">스냅빗과 함께 빠르고 간편하게</p>
-        <p class="text-5xl text-white">오늘부터 1일 1스냅!</p>
+        <article class="flex-col items-center justify-center flex"
+                 style="-webkit-font-smoothing: antialiased;margin-left: 50%">
+            <p class="text-6xl text-white mb-20 font-bold">암호화폐, 블록체인 정보를</p>
+            <p class="text-4xl text-white mb-20">스냅빗과 함께 빠르고 간편하게</p>
+            <p class="text-5xl text-white">오늘부터 1일 1스냅!</p>
+        </article>
+    </section>
+</section>
+
+
+<!-- 블록체인 소개 -->
+<section class="flex justify-center mt-48" style="height: 600px">
+    <article class="w-4/5 flex justify-around">
+        <div class="flex flex-col items-start w-1/3 overflow-hidden" >
+            <h1 class="font-bold text-6xl text-gray-900"> What is Blockchain?</h1>
+            <p class="text-gray-600 text-xl mt-6">블록체인(blockchain)은 관리 대상 데이터를 '블록'이라고 하는 소규모 데이터들이 P2P 방식을 기반으로 생성된 체인 형태의
+                연결고리 기반 분산 데이터 저장 환경에 저장하여 누구라도 임의로 수정할 수 없고 누구나 변경의 결과를 열람할 수 있는 분산 컴퓨팅 기술 기반의 원장 관리 기술이다. 이는 근본적으로 분산 데이터 저장기술의 한 형태로, 지속적으로
+                변경되는 데이터를 모든 참여 노드에 기록한 변경 리스트로서 분산 노드의 운영자에 의한 임의 조작이 불가능하도록 고안되었다. 블록체인 기술은 비트코인을 비롯한 대부분의 암호화폐 거래에 사용된다. 암호화폐의 거래과정은 탈중앙화된
+                전자장부에 쓰이기 때문에 블록체인 소프트웨어를 실행하는 많은 사용자들의 각 컴퓨터에서 서버가 운영되어, 중앙에 존재하는 은행 없이 개인 간의 자유로운 거래가 가능하다.
+            </p>
+        </div>
+        <div class="w-1/3 h-full">
+            <img src="../img/blockchain.png">
+        </div>
     </article>
 </section>
 
+
+<!-- 띠로 된 코인 정보 -->
 <div>
     <a href="https://kr.tradingview.com" rel="noopener" target="_blank">
         <span class="blue-text"></span>
@@ -121,7 +149,8 @@
     }
 </script>
 
-<!-- Small Chart Section-->
+
+<!-- 중간 차트 정보 -->
 <section class="h-screen flex flex-col mb-56 items-center">
     <article class="mb-8">
         <p class="text-gray-200 text-6xl text-black mb-15 font-extrabold text-center">Index
@@ -222,7 +251,7 @@
 
 
 
-<!-- Big Chart Section-->
+<!-- 큰 차트 정보 -->
 <section class="h-screen flex-col justify-center items-center">
     <p class="text-gray-200 text-6xl text-black font-extrabold">Bitcoin chart</p>
     <div class="tradingview-widget-container">
@@ -320,4 +349,5 @@
 </script>
 
 </body>
+
 </html>

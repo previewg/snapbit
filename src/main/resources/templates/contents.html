@@ -2,13 +2,11 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
     <link rel="stylesheet" href="../css/tailwind.css">
     <!--Google_Font-->
-    <link rel="stylesheet" href="../css/font.css" />
+    <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
 <nav class="flex h-20 items-center w-full border-b z-10 top-0">
@@ -18,11 +16,10 @@
     </div>
     <div
             class="justify-around flex-grow flex justify-between change text-lg">
-        <a
-                class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-                href="/">Home</a> <a
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a> <a
             class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-            href="/about">About</a> <a
+            href="/contents">Contents</a> <a
             class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
             href="/news">News</a> <a
             class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
@@ -34,7 +31,8 @@
             <ul>
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signin</button>
+                    Signin
+                </button>
             </ul>
         </form>
     </div>
@@ -42,15 +40,23 @@
          th:if="${session.user_info} != null">
         <form id="signOut">
             <ul class="flex">
-                <p th:text="${session.user_info.name}"
-                   class="text-lg text-white mr-5"></p>
-                <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signout</button>
+                <div class="flex items-center">
+                    <a href="/userInfo">
+                        <img src="../img/userIcon.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                    </a>
+                    <p th:text="|${session.user_info.nickname}님|" class="text-lg mr-5"></p>
+                    <button
+                            class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
+                        Signout
+                    </button>
+                </div>
             </ul>
         </form>
     </div>
 </nav>
+
+
 <section
         style="background-image: url(../img/bitcoin2.jpg); height: 350px"
         class="w-full flex flex-col items-center justify-center">
@@ -65,34 +71,20 @@
 </section>
 
 
-
-
-
 <div class="main">
-    <div class="px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
-        <div class="hero">
-            <div
-                    class="hero-headline flex flex-col items-center justify-center pt-24 text-center">
-                <h1 class=" font-bold text-3xl text-gray-900">Stunning free
-                    images & royalty free stock</h1>
-                <p class=" font-base text-base text-gray-600">high quality
-                    stock images and videos shared by our talented community.</p>
-            </div>
-
-
-            <!-- action="/about/search" method="GET" -->
-            <form class="w-3/5 flex mt-20 justify-end h-16 text-lg items-center mb-6">
-                <input id="search" type="text" name="" placeholder="검색어를 입력해주세요."
-                       value="" class="border-b py-1 px-4 focus:outline-none mr-4">
-
-                <button id="search__button" type="button"
-                        class="ml-1 focus:outline-none text-gray-800 flex items-center">
-                    <img src="../img/search.svg" class="h-4 w-4 mr-1">
-                </button>
-            </form>
-        </div>
+    <div class="flex flex-col items-start justify-around mt-24 text-center w-1/3 ml-48" >
+        <h1 class="font-bold text-3xl text-gray-900"> What is Blockchain?</h1>
     </div>
+    <!-- action="/about/search" method="GET" -->
+    <form class="w-3/5 flex mt-20 justify-end h-16 text-lg items-center mb-6">
+        <input id="search" type="text" name="" placeholder="검색어를 입력해주세요."
+               value="" class="border-b py-1 px-4 focus:outline-none mr-4">
 
+        <button id="search__button" type="button"
+                class="ml-1 focus:outline-none text-gray-800 flex items-center">
+            <img src="../img/search.svg" class="h-4 w-4 mr-1">
+        </button>
+    </form>
 </div>
 
 <section id="before" class=" h-screen w-full">
@@ -106,11 +98,11 @@
 <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <script>
     $.ajax({
-        url : 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCKUX3TmLFwx7CBMLvrkTCTBu3knFuIjhE&maxResults=9',
-        data : {
-            'q' : '블록체인'
+        url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCKUX3TmLFwx7CBMLvrkTCTBu3knFuIjhE&maxResults=9',
+        data: {
+            'q': '블록체인'
         },
-        success : function(res) {
+        success: function (res) {
             var items = res.items;
             var html = '';
             for (var i = 0; i < 9; i++) {
@@ -119,7 +111,7 @@
                 // var img = item.snippet.thumbnails.default.url;
                 var videoId = item.id.videoId;
 
-                if(i % 3 == 0) {
+                if (i % 3 == 0) {
                     html += '<div class="row" style="margin-bottom: 30px;">';
                 }
                 html += `<div class="flex justify-center col-md-4 col-sm-6">\
@@ -129,7 +121,7 @@
                        frameborder="0"></iframe>\
                        </div>`;
 
-                if((i+1) % 3 == 0) {
+                if ((i + 1) % 3 == 0) {
                     html += '</div>';
                 }
             }
@@ -140,16 +132,16 @@
 
     });
 
-    $("#search__button").on("click",function() {
+    $("#search__button").on("click", function () {
         $("#youtube2").empty();
         let search = $("#search").val();
 
         $.ajax({
-            url : 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCKUX3TmLFwx7CBMLvrkTCTBu3knFuIjhE&maxResults=9',
-            data : {
-                'q' : search
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCKUX3TmLFwx7CBMLvrkTCTBu3knFuIjhE&maxResults=9',
+            data: {
+                'q': search
             },
-            success : function(res) {
+            success: function (res) {
                 $('#before').hide();
                 var items = res.items;
                 var html = '';
@@ -158,7 +150,7 @@
                     var title = item.snippet;
                     // var img = item.snippet.thumbnails.default.url;
                     var videoId = item.id.videoId;
-                    if(i % 3 == 0) {
+                    if (i % 3 == 0) {
                         html += '<div class="row" style="margin-bottom: 30px;">';
                     }
 
@@ -169,7 +161,7 @@
                           frameborder="0"></iframe>\
                           </div>`;
 
-                    if((i+1) % 3 == 0) {
+                    if ((i + 1) % 3 == 0) {
                         html += '</div>';
                     }
                 }

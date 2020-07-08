@@ -13,16 +13,6 @@ let emailVerified = false;
 let pwdVerified = false;
 let nickVerified = false;
 
-// $('#signUp__nickname').blur(function () {
-//     $('#error_nickname').css("display", "none");
-// })
-// $('#signUp__email').blur(function () {
-//     $('#error_email').css("display", "none");
-// })
-// $('#signUp__pwd2').blur(function () {
-//     $('#error_pwd').css("display", "none");
-// })
-
 
 $('#signUp__email').on("propertychange change keyup paste input",
     function () {
