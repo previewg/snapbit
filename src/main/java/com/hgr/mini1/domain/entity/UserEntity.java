@@ -7,9 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 /*파라미터가 없는 기본생성자를 추가하는 어노테이션 , JPA를 사용하기 위해
  * 기본 생성자 생성은 필수적이라서*/
 @Getter
@@ -33,11 +34,11 @@ public class UserEntity {
     @Column(length = 100, nullable = false)
     private String nickname;
 
-    @OneToMany(mappedBy = "userEntity")
-    private Set<CommentEntity> commentEntities;
+    @OneToMany(fetch =FetchType.EAGER)
+    private List<CommentEntity> commentEntityList = new ArrayList<>();
 
     @Builder
-    public UserEntity(Long id, String email, String pwd, String name, String nickname) {
+    public UserEntity(Long id,String email, String pwd, String name, String nickname) {
         this.id = id;
         this.email = email;
         this.pwd = pwd;

@@ -151,10 +151,14 @@ public class BoardService {
         return pageList;
     }
 
-    @Transactional
-    public void saveComment(CommentDto commentDto) {
-        commentRepository.save(commentDto.toEntity());
-    }
+//    @Transactional
+//    public void saveComment(CommentDto commentDto) {
+//        BoardEntity b = boardRepository.findById(commentDto.getId()).get();
+//        b.getCommentEntityList().add(c);
+//
+//        br.save(b);
+//        commentRepository.save(commentDto.toEntity());
+//    }
 
 
 }

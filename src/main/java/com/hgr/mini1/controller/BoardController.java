@@ -3,10 +3,8 @@ package com.hgr.mini1.controller;
 
 import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.CommentDto;
-import com.hgr.mini1.repository.BoardRepository;
 import com.hgr.mini1.service.BoardService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +14,6 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-/* Repository를 주입하기 위해 사용 */
 public class BoardController {
     private BoardService boardService;
 
@@ -65,7 +62,6 @@ public class BoardController {
     }
 
     /* 게시글 목록*/
-
     @GetMapping("/board")
     public String list(Model model,
                        @RequestParam(value="page",
@@ -95,10 +91,9 @@ public class BoardController {
     // recommend 올라가는 로직 만들어야함
     // recommend 올라가는 로직 만들어야함
 
-    @PostMapping("/board/comment")
-    public String saveComment(CommentDto commentDto){
-        boardService.saveComment(commentDto);
-        System.out.println("여기는 도달");
-        return "redirect:/board";
-    }
+//    @PostMapping("/board/comment")
+//    public String saveComment(CommentDto commentDto){
+//        boardService.saveComment(commentDto);
+//        return "redirect:/board";
+//    }
 }

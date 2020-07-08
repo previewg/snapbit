@@ -1,17 +1,13 @@
 package com.hgr.mini1.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-/*파라미터가 없는 기본생성자를 추가하는 어노테이션 , JPA를 사용하기 위해
-* 기본 생성자 생성은 필수적이라서*/
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 @Entity
 @Table(name = "board")
@@ -34,12 +30,13 @@ public class BoardEntity extends TimeEntity {
     private int hit;
     private int recommend;
 
-    @OneToMany(mappedBy = "boardEntity")
-    private Set<CommentEntity> commentEntities;
+    @OneToMany(fetch =FetchType.EAGER)
+    private List<CommentEntity> commentEntityList = new ArrayList<>();
+
 
     @Builder
-    public BoardEntity(Long id, String title, String content, String author, int hit, int recommend) {
-        this.id = id;
+    public BoardEntity(Long id,String title, String content, String author, int hit, int recommend) {
+        this.id=id;
         this.author = author;
         this.title = title;
         this.content = content;
