@@ -30,8 +30,8 @@ public class UserEntity {
     @Column(length = 100, nullable = false)
     private String nickname;
 
-    @OneToMany(fetch =FetchType.EAGER)
-    private List<CommentEntity> commentEntityList = new ArrayList<>();
+//    @OneToMany(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
+//    private List<CommentEntity> commentEntityList = new ArrayList<>();
 
     @Builder
     public UserEntity(Long id,String email, String pwd, String name, String nickname) {

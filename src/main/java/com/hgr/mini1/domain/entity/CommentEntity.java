@@ -17,9 +17,13 @@ public class CommentEntity{
     @Column(length = 500, nullable = false)
     private String comment;
 
+    @Column(length = 500, nullable = false)
+    private String nickname;
+
     @Builder
-    public CommentEntity(Long id,String comment) {
-        this.id=id;
-        this.comment=comment;
+    public CommentEntity(Long id,String comment,String nickname) {
+        this.id = id;
+        this.comment = comment;
+        this.nickname = nickname;
     }
 }

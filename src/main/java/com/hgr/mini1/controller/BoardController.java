@@ -90,6 +90,8 @@ public class BoardController {
 
     @PostMapping("/board/comment")
     public String saveComment(CommentDto commentDto,long board_id){
+        System.out.println(commentDto);
+        System.out.println(board_id);
         boardService.saveComment(commentDto,board_id);
         return "redirect:/post/" + board_id;
     }

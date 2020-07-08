@@ -55,7 +55,7 @@
     <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
 </section>
 
-<section class="h-screen flex flex-col mt-4 w-full">
+<section class="flex flex-col mt-4 w-full">
     <!-- Board List -->
     <article class="w-1/2 ml-40 border-b">
         <div class="border-b mb-2 flex flex-col h-48 justify-around">
@@ -82,12 +82,13 @@
     <article class="w-1/2 ml-40 mt-4 flex flex-col">
         <p class="text-xl font-bold mb-3">댓글</p>
         <div th:if="${session.user_info} != null">
-            <form action="/board/comment" method="post">
+            <form id="comment__form" action="/board/comment" method="post">
                 <input type="hidden" name="board_id" th:value="${boardDto.id}">
+                <input type="hidden" name="nickname" th:value="${session.user_info.nickname}">
                 <input name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
                 <div class="flex justify-end mt-2">
                     <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" id="comment__cancle" onclick="commentCancle()">취소</button>
-                    <button class="w-12 h-10 hover:bg-gray-200 outline-none">댓글</button>
+                    <button class="w-12 h-10 hover:bg-gray-200 outline-none" type="submit">댓글</button>
                 </div>
             </form>
         </div>
@@ -105,10 +106,12 @@
 
 <section class="h-screen flex flex-col mt-4 w-full" th:if="${commentDtoList} != null">
     <article class="w-1/2 ml-40">
-        <div th:each="comment : ${commentDtoList}" style="font-weight: 300"
-             class="w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
-            <p th:text="${comment.id}"></p>
-            <p th:text="${comment.comment}"></p>
+        <div th:each="comment : ${commentDtoList}" class="w-full flex focus:outline-none hover:bg-gray-100 h-16 border-b mt-4">
+            <img src="../../img/user.svg" class="w-8 h-8 mr-4">
+            <div class="flex-col justify-center mb-3">
+                <p th:text="${comment.nickname}"></p>
+                <p th:text="${comment.comment}" class="text-gray-600"></p>
+            </div>
         </div>
     </article>
 </section>
@@ -143,6 +146,16 @@
         $('.comment').val('')
         $('.comment').focus();
     }
+</script>
+<script>
+    $('[name=comment]').keydown(function(e) {
+        if (e.keyCode === 13) {
+            if($(this).val() != '') {
+                $(this).parent().submit();
+            }
+            return false;
+        }
+    });
 </script>
 </body>
 </html>

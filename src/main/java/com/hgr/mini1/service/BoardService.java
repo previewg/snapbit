@@ -2,10 +2,12 @@ package com.hgr.mini1.service;
 
 import com.hgr.mini1.domain.entity.BoardEntity;
 import com.hgr.mini1.domain.entity.CommentEntity;
+import com.hgr.mini1.domain.entity.UserEntity;
 import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.CommentDto;
 import com.hgr.mini1.repository.BoardRepository;
 import com.hgr.mini1.repository.CommentRepository;
+import com.hgr.mini1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,7 @@ import java.util.Optional;
 public class BoardService {
     private BoardRepository boardRepository;
     private CommentRepository commentRepository;
+    private UserRepository userRepository;
 
 
 
@@ -54,6 +57,7 @@ public class BoardService {
         return CommentDto.builder()
                 .id(commentEntity.getId())
                 .comment(commentEntity.getComment())
+                .nickname(commentEntity.getNickname())
                 .build();
     }
 
@@ -171,8 +175,10 @@ public class BoardService {
         List<CommentEntity> commentEntities = boardEntity.getCommentEntityList();
         for ( CommentEntity commentEntity :commentEntities) {
             CommentDtoList.add(convertEntityToDto(commentEntity));
+            System.out.println(commentEntity);
         }
 
+        System.out.println(CommentDtoList);
         return CommentDtoList;
     }
 
