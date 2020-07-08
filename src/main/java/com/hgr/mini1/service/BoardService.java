@@ -31,11 +31,9 @@ public class BoardService {
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         if (boardEntities.isEmpty()) return boardDtoList;
-
         for (BoardEntity boardEntity : boardEntities) {
             boardDtoList.add(this.convertEntityToDto(boardEntity));
         }
-
         return boardDtoList;
     }
 
@@ -124,7 +122,6 @@ public class BoardService {
         Integer[] pageList = new Integer[BLOCK_PAGE_NUM_COUNT];
 
 
-
         // 총 게시글 갯수
         Double postsTotalCount = Double.valueOf(this.getBoardCount());
 
@@ -151,14 +148,14 @@ public class BoardService {
         return pageList;
     }
 
-//    @Transactional
-//    public void saveComment(CommentDto commentDto) {
-//        BoardEntity b = boardRepository.findById(commentDto.getId()).get();
-//        b.getCommentEntityList().add(c);
-//
-//        br.save(b);
-//        commentRepository.save(commentDto.toEntity());
-//    }
+    @Transactional
+    public void saveComment(CommentDto commentDto) {
+        commentRepository.save(commentDto.toEntity());
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.getCommentEntityList().add(commentDto.toEntity());
+    }
+
+
 
 
 }

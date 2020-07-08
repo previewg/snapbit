@@ -6,9 +6,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 public class BoardDto {
     private Long id;

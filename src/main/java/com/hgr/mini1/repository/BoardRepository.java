@@ -16,12 +16,12 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE board SET hit = hit+1 WHERE id=?1", nativeQuery = true)
+    @Query(value = "UPDATE board SET hit = hit+1 WHERE board_id=?1", nativeQuery = true)
     public void increaseHit(Long id);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE board SET recommend = recommend+1 WHERE id=?1", nativeQuery = true)
+    @Query(value = "UPDATE board SET recommend = recommend+1 WHERE board_id=?1", nativeQuery = true)
     public void increaseRecommend(Long id);
 
 }

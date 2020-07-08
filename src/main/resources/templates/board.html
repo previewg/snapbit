@@ -104,7 +104,7 @@
             </div>
         </div>
         <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">다음</a>
-        <a class="ml-3" th:href="@{'/board?page='+ ${#lists.size(pageList)}}">마지막</a>
+        <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">마지막</a>
 
         <div th:if="${session.user_info != null}">
             <form action="/board/write" method="get">

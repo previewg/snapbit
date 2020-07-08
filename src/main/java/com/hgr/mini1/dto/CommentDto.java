@@ -8,9 +8,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 public class CommentDto {
     private Long id;

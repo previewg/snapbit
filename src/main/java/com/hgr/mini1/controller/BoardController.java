@@ -21,9 +21,7 @@ public class BoardController {
     @GetMapping("/board/search")
     public String search(@RequestParam(value = "keyword") String keyword, Model model) {
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
-
         model.addAttribute("boardList", boardDtoList);
-
         return "board";
     }
 
@@ -87,13 +85,9 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    // recommend 올라가는 로직 만들어야함
-    // recommend 올라가는 로직 만들어야함
-    // recommend 올라가는 로직 만들어야함
-
-//    @PostMapping("/board/comment")
-//    public String saveComment(CommentDto commentDto){
-//        boardService.saveComment(commentDto);
-//        return "redirect:/board";
-//    }
+    @PostMapping("/board/comment")
+    public String saveComment(CommentDto commentDto,@RequestParam long board_id){
+        boardService.saveComment(commentDto);
+        return "redirect:/post/" + board_id;
+    }
 }

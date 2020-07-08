@@ -82,10 +82,9 @@
     <article class="w-1/2 ml-40 mt-4 flex flex-col">
         <p class="text-xl font-bold mb-3">댓글</p>
         <div th:if="${session.user_info} != null">
-            <form method="post" action="board/comment">
+            <form action="/board/comment" method="post">
                 <input type="hidden" name="board_id" th:value="${boardDto.id}">
-                <input type="hidden" name="user_id" th:value="${session.user_info.id}">
-                <input name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
+                <input required name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
                 <div class="flex justify-end mt-2">
                     <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" id="comment__cancle" onclick="commentCancle()">취소</button>
                     <button class="w-12 h-10 hover:bg-gray-200 outline-none" type="submit">댓글</button>
@@ -94,12 +93,10 @@
         </div>
         <div th:if="${session.user_info} == null">
             <form>
-                <input type="hidden" name="board_id" th:value="${boardDto.id}">
-                <input type="hidden" name="user_id" th:value="${session.user_info.id}">
                 <input name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
                 <div class="flex justify-end mt-2">
                     <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" onclick="commentCancle()">취소</button>
-                    <button class="w-12 h-10 hover:bg-gray-200 outline-none" onclick="userVerify()" style="cursor: not-allowed">댓글</button>
+                    <button class="w-12 h-10 hover:bg-gray-200 outline-none" onclick="userVerify()">댓글</button>
                 </div>
             </form>
         </div>
@@ -128,7 +125,10 @@
 <script th:inline="javascript" th:src="@{/js/board.js}"></script>
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
-    function commentCancle(){ $('.comment').val('')}
+    function commentCancle(){
+        $('.comment').val('')
+        $('.comment').focus();
+    }
 </script>
 </body>
 </html>

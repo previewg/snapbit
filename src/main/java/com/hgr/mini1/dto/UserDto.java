@@ -30,7 +30,7 @@ public class UserDto {
     }
 
     @Builder
-    public UserDto(Long id, String email, String pwd, String name, String nickname) {
+    public UserDto(Long id,String email, String pwd, String name, String nickname) {
         this.id = id;
         this.email = email;
         this.pwd = pwd;

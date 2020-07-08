@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Getter
+@Data
 @Entity
 @Table(name = "board")
 public class BoardEntity extends TimeEntity {

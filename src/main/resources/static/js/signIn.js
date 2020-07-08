@@ -111,6 +111,7 @@ $('#signUp__nickname').on("propertychange change keyup paste input",
 
 $('#signUp__form').submit(function () {
     if(emailVerified && pwdVerified&&nickVerified) {
+        console.log($('#signUp__form').serialize());
         $.ajax({
             url: '/signUp',
             type: 'post',

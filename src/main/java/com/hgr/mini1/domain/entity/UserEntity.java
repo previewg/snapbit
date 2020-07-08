@@ -1,19 +1,15 @@
 package com.hgr.mini1.domain.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-/*파라미터가 없는 기본생성자를 추가하는 어노테이션 , JPA를 사용하기 위해
- * 기본 생성자 생성은 필수적이라서*/
-@Getter
+@Data
 @Entity
 @Table(name = "user")
 public class UserEntity {
