@@ -26,10 +26,12 @@ public class BoardController {
     }
 
     @GetMapping("/post/{no}")
-    public String detail(@PathVariable("no") Long no, Model model) {
-        boardService.increseHit(no);
-        BoardDto boardDTO = boardService.getPost(no);
-        model.addAttribute("boardDto", boardDTO);
+    public String detail(@PathVariable("no") Long no,Model model) {
+        BoardDto boardDto = boardService.getPost(no);
+        List<CommentDto> commentDtoList = boardService.commentList(no);
+
+        model.addAttribute("boardDto", boardDto);
+        model.addAttribute("commentDtoList",commentDtoList);
         return "board/detail";
     }
 

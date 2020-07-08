@@ -1,6 +1,7 @@
 package com.hgr.mini1.service;
 
 import com.hgr.mini1.domain.entity.BoardEntity;
+import com.hgr.mini1.domain.entity.CommentEntity;
 import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.CommentDto;
 import com.hgr.mini1.repository.BoardRepository;
@@ -46,6 +47,14 @@ public class BoardService {
                 .hit(boardEntity.getHit())
                 .recommend(boardEntity.getHit())
                 .createdDate(boardEntity.getCreatedDate())
+                .build();
+    }
+
+    private CommentDto convertEntityToDto(CommentEntity commentEntity) {
+        return CommentDto.builder()
+                .id(commentEntity.getId())
+                .comment(commentEntity.getComment())
+                .createdDate(commentEntity.getCreatedDate())
                 .build();
     }
 
@@ -155,6 +164,19 @@ public class BoardService {
         boardEntity.getCommentEntityList().add(commentDto.toEntity());
     }
 
+
+    @Transactional
+    public List<CommentDto> commentList(Long id){
+        List<CommentDto> CommentDtoList = new ArrayList<>();
+
+        BoardEntity boardEntity = boardRepository.findById(id).get();
+        List<CommentEntity> commentEntities = boardEntity.getCommentEntityList();
+        for ( CommentEntity commentEntity :commentEntities) {
+            CommentDtoList.add(convertEntityToDto(commentEntity));
+        }
+
+        return CommentDtoList;
+    }
 
 
 

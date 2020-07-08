@@ -100,7 +100,16 @@
                 </div>
             </form>
         </div>
+    </article>
+</section>
 
+<section class="h-screen flex flex-col mt-4 w-full">
+    <article class="w-1/2 ml-40">
+        <div th:each="comment : ${commentDtoList}" style="font-weight: 300"
+             class="w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
+            <p th:text="${comment.id}"></p>
+            <p th:text="${comment.comment}"></p>
+        </div>
     </article>
 </section>
 
