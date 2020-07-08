@@ -34,7 +34,8 @@
             <ul>
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signin</button>
+                    Signin
+                </button>
             </ul>
         </form>
     </div>
@@ -46,7 +47,8 @@
                    class="text-lg text-white mr-5"></p>
                 <button
                         class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signout</button>
+                    Signout
+                </button>
             </ul>
         </form>
     </div>
@@ -68,93 +70,155 @@
 
 
 <!-- 상단위젯바 -->
-<section class="mt-1 flex justify-start items-top"> <a
+<section class="mt-1 flex justify-start items-top"><a
         href="https://kr.tradingview.com" rel="noopener" target="_blank">
     <span class="blue-text"></span>
-</a> <script type="text/javascript"
-             src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-             async>
-    {
-        "symbols"
-    :
-        [
-            {
-                "description": "원/비트코인",
-                "proName": "BITHUMB:BTCKRW"
-            },
-            {
-                "description": "원/이더리움",
-                "proName": "BITHUMB:ETHKRW"
-            },
-            {
-                "description": "원/리플",
-                "proName": "BITHUMB:XRPKRW"
-            },
-            {
-                "description": "원/비트코인캐시",
-                "proName": "BITHUMB:BCHKRW"
-            },
-            {
-                "description": "원/이오스",
-                "proName": "BITHUMB:EOSKRW"
-            }
-        ],
-            "colorTheme"
-    :
-        "dark",
-            "isTransparent"
-    :
-        false,
-            "displayMode"
-    :
-        "compact",
-            "locale"
-    :
-        "kr"
-    }
-</script> </section>
-
-
-
-<!-- 뉴스 -->
-<section class="w-full justify-center flex">
-    <section class="flex items-center w-3/5 h-full static flex-col">
-
-        <article class="w-full flex justify-around mt-8 " style="height:300px;">
-            <p class=" border " style="width: 500px" img="">asdf</p>
-            <p class=" border " style="width: 500px" img="">asdf</p>
-        </article>
-
-        <section class="flex justify-around w-full mt-8">
-            <article class=" border  " style="height:170px;width:273px">
-                <p>1</p>
-            </article>
-
-            <article class=" border " style="height:170px;width:273px">
-                <p>1</p>
-            </article>
-
-            <article class=" border " style="height:170px;width:273px">
-                <p>1</p>
-            </article>
-
-            <article class=" border " style="height:170px;width:273px">
-                <p>1</p>
-            </article>
-        </section>
-
-    </section>
+</a>
+<script type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+            async>
+        {
+            "symbols"
+        :
+            [
+                {
+                    "description": "원/비트코인",
+                    "proName": "BITHUMB:BTCKRW"
+                },
+                {
+                    "description": "원/이더리움",
+                    "proName": "BITHUMB:ETHKRW"
+                },
+                {
+                    "description": "원/리플",
+                    "proName": "BITHUMB:XRPKRW"
+                },
+                {
+                    "description": "원/비트코인캐시",
+                    "proName": "BITHUMB:BCHKRW"
+                },
+                {
+                    "description": "원/이오스",
+                    "proName": "BITHUMB:EOSKRW"
+                }
+            ],
+                "colorTheme"
+        :
+            "dark",
+                "isTransparent"
+        :
+            false,
+                "displayMode"
+        :
+            "compact",
+                "locale"
+        :
+            "kr"
+        }
+    </script>
 </section>
 
 
+<!-- 뉴스 -->
+<strong class="text-6xl flex justify-center -mb-8 mt-8">BlockChain News</strong>
 
-<footer class="h-64 bg-gray-200">
-    여기가 footer
-</footer>
+<div class="mt-12 pl-64 w-full pr-64">
+    <!-- featured section -->
+    <div class="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
+        <!-- main post -->
+        <div class="mb-4 lg:mb-0 p-4 lg:p-0 w-2/3 md:w-full relative rounded block" id="main"> </div>
+        <!-- posts -->
+        <div class="w-full md:w-full" id="here"></div>
+    </div>
+    <!-- end featured section -->
 
+    <!-- subscribe -->
+    <div class="rounded flex md:shadow mt-12 pb-16">
+        <img
+                src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                class="w-0 md:w-1/4 object-cover rounded-l" />
+        <div class="px-4 py-2">
+            <h3 class="text-3xl text-gray-800 font-bold">Subscribe to
+                newsletter</h3>
+            <p class="text-xl text-gray-700">We sent latest news and posts
+                once in every week, fresh from the oven</p>
+            <form class="mt-4 mb-10">
+                <input type="email"
+                       class="rounded bg-gray-100 px-4 py-2 border focus:border-green-400"
+                       placeholder="asdfasdf@gmail.com" />
+                <button class="px-4 py-2 rounded bg-green-800 text-gray-100">
+                    Subscribe
+                    <i class='bx bx-right-arrow-alt'></i>
+                </button>
+                <p class="text-green-900 opacity-50 text-sm mt-1">No spam. We promise</p>
+            </form>
+        </div>
+    </div>
+    <!-- ens subscribe section -->
+</div>
+<!-- main ends here -->
+
+<footer class="h-40 flex justify-around" th:replace="common/footer"></footer>
 
 <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 
+<script>
+    $("#main").on("click",function() {
+        alert("asdf");
+    });
+    $("#here").on("click",function() {
+
+    });
+
+    let title;
+    let description;
+
+    window.onload = () => {
+        console.log('test')
+        $.ajax({
+            type: "GET",
+            url: "/getNews",
+            success: (result) => {
+                console.log(result);
+                title=result.items[0].title;
+                description=result.items[0].description;
+                addNewsMain();
+
+                for (let i=1;i<6;i++) {
+                    title = result.items[i].title;
+                    description = result.items[i].description;
+                    addNews();
+                }
+            }
+        });
+    };
+
+    addNewsMain = () => {
+        let html = `<img src="../img/chain.jpg" class="rounded-md object-cover w-full h-64" style="height:600px">\
+        <h1 class="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">\
+        ${title}\
+        </h1>\
+        <p class="text-gray-600 mb-4">\
+        ${description}\
+        </p>`;
+        $('#main').append(html);
+    };
+
+    addNews = () => {
+        let html = `<div class="rounded w-full flex flex-col md:flex-row mb-10">\
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" class="block md:hidden lg:block rounded-md h-64 md:h-32 m-4 md:m-0" />\
+        <div class="bg-white rounded px-4">\
+          <div class="md:mt-0 text-gray-800 font-semibold text-xl mb-2">\
+           ${title}\
+          </div>\
+          <p class="block md:mt-0 p-2 pl-0 pt-1 text-sm text-gray-600">\
+            ${description}\
+          </p>\
+        </div>\
+      </div>`;
+        $('#here').append(html);
+    };
+</script>
 
 </body>
 </html>
