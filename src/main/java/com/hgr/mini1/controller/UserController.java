@@ -1,6 +1,7 @@
 package com.hgr.mini1.controller;
 
 
+import com.hgr.mini1.domain.entity.UserEntity;
 import com.hgr.mini1.dto.UserDto;
 import com.hgr.mini1.service.UserService;
 import lombok.AllArgsConstructor;
@@ -9,12 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
 @AllArgsConstructor
 public class UserController {
     private UserService userService;
+    HttpSession session;
 
     // 유저정보 페이지 단순 get 호출
     @GetMapping("/userInfo")
@@ -68,6 +71,15 @@ public class UserController {
     @ResponseBody
     public String signOut() {
         userService.signOut();
+        return "success";
+    }
+
+    @PostMapping("/user/delete")
+    @ResponseBody
+    public String userDelete() {
+        UserEntity userInfo = (UserEntity) session.getAttribute("user_info");
+        userService.userDelete(userInfo);
+
         return "success";
     }
 

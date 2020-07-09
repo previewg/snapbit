@@ -86,6 +86,7 @@
                     <button>
                         <img src="../img/unlike.svg" class="h-5 w-5">
                     </button>
+                    <span>좋아요 0개</span>
                 </th:block>
 
                 <th:block th:if="${#lists.size(loveeDtoList)} > 0">
@@ -94,6 +95,7 @@
                             <button>
                                 <img src="../img/like.svg" class="h-5 w-5">
                             </button>
+                            <span th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
                         </th:block>
                         </button>
                     </th:block>
@@ -105,6 +107,7 @@
             <button onclick="userVerify()">
                 <img src="../img/unlike.svg" class="h-5 w-5">
             </button>
+            <span th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
         </div>
     </article>
 
@@ -167,6 +170,9 @@
 <!--    </form>-->
 <!--</div>-->
 <!-- 변수 셋팅 -->
+
+<footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
+
 <script th:inline="javascript">
     /*<![CDATA[*/
     var boardDto = /*[[${boardDto}]]*/ "";

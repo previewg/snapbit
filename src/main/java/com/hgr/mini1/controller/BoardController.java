@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class BoardController {
     private BoardService boardService;
+    HttpSession session;
+
 
     /*검색기능*/
     @GetMapping("/board/search")
@@ -84,7 +87,8 @@ public class BoardController {
     }
     
     @GetMapping("/board/write")
-    public String write() {
+    public String write(Model model) {
+        model.addAttribute(session.getAttribute("user_info"));
         return "board/write";
     }
 
@@ -111,4 +115,5 @@ public class BoardController {
         boardService.SaveboardLike(loveeDto);
         return "redirect:/post/" + loveeDto.getBoard();
     }
+
 }

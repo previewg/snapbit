@@ -89,11 +89,20 @@
              class="text-lg w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
             <p style="width:10%" class="text-center" th:text="${board.id}"></p>
             <div style="width:50%;text-align: left">
-                <form method="get" action="board/click">
-                    <input type="hidden" name="board_id" th:value="${board.id}">
-                    <input type="hidden" name="author" th:value="${session.user_info.nickname}">
-                    <button th:text="${board.title}" type="submit"></button>
-                </form>
+                <th:block th:if="${session.user_info}!=null">
+                    <form method="get" action="board/click">
+                        <input type="hidden" name="board_id" th:value="${board.id}">
+                        <input type="hidden" name="author" th:value="${session.user_info.nickname}">
+                        <button th:text="${board.title}" type="submit"></button>
+                    </form>
+                </th:block>
+                <th:block th:if="${session.user_info}==null">
+                    <form method="get" action="board/click">
+                        <input type="hidden" name="board_id" th:value="${board.id}">
+                        <input type="hidden" name="author" th:value="root">
+                        <button th:text="${board.title}" type="submit"></button>
+                    </form>
+                </th:block>
 
             </div>
             <p th:text="${board.author}" style="width:10%" class="text-center"></p>
@@ -143,7 +152,7 @@
         </div>
     </article>
 </section>
-
+<footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
 
 <!-- User Verifying JS for writing post -->
 <script>

@@ -141,6 +141,23 @@
         return false;
     })
 </script>
+<!-- 탈퇴 -->
+<script>
+    $('#withdrawal__btn').click(function () {
+        $.ajax({
+            url: '/user/delete',
+            type: 'post',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 탈퇴하셧습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
+
+</script>
 
 </body>
 </html>

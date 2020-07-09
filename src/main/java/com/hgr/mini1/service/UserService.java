@@ -65,4 +65,10 @@ public class UserService {
         session.removeAttribute("user_info");
     }
 
+    public void userDelete(UserEntity userDto){
+        System.out.println(userDto);
+        session.removeAttribute("user_info");
+        userRepository.deleteById(userDto.getId());
+    }
+
 }

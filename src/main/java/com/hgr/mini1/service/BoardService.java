@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -218,6 +219,7 @@ public class BoardService {
             loveeRepository.save(loveeDto.toEntity());
         }
     }
+
 
 
 
