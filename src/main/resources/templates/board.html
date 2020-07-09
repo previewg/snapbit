@@ -8,47 +8,7 @@
     <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
-<nav class="flex h-20 items-center w-full border-b z-10 top-0">
-    <div class="flex-grow flex justify-center">
-        <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
-
-    </div>
-    <div class="justify-around flex-grow flex justify-between change text-lg">
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/">Home</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/contents">Contents</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/news">News</a>
-        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
-           href="/board">Board</a>
-    </div>
-    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
-        <form method="get" action="/signIn">
-            <ul>
-                <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signin
-                </button>
-            </ul>
-        </form>
-    </div>
-    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
-        <form id="signOut">
-            <ul class="flex">
-                <div class="flex items-center">
-                    <a href="/userInfo">
-                        <img src="../img/userIcon.svg" class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
-                    </a>
-                    <p th:text="|${session.user_info.nickname}님|" class="text-lg mr-5"></p>
-                    <button
-                            class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                        Signout
-                    </button>
-                </div>
-            </ul>
-        </form>
-    </div>
-</nav>
+<nav class="flex h-20 items-center w-full border-b z-10 top-0" th:replace="common/nav"></nav>
 
 <section style="background-image: url(../img/bitcoin2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
     <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>

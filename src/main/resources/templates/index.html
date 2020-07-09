@@ -35,7 +35,8 @@
         <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
             <form method="get" action="/signIn">
                 <ul>
-                    <button>
+                    <button class="flex items-center">
+                        <p class="mr-4 text-white change">로그인</p>
                         <img src="../img/userIcon.svg"
                              class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </button>
@@ -50,7 +51,7 @@
                             <img src="../img/userIcon.svg"
                                  class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                         </a>
-                        <p th:text="|${session.user_info.nickname}님|" class="text-lg text-white mr-5"></p>
+                        <p th:text="|${session.user_info.nickname}님|" class="change text-lg text-white mr-5"></p>
                         <button>
                             <img src="../img/signOut.svg"
                                  class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">

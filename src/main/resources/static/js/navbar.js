@@ -11,8 +11,6 @@ $(document).ready(()=>{
             $("#navbar").css("background-color","transparent");
             $(".change").css("color","white");
 
-
-
         }
     })
 })
