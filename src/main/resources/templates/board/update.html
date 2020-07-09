@@ -3,14 +3,56 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
-    <link rel="stylesheet" href="../css/tailwind.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
     <!--Google_Font-->
-    <link rel="stylesheet" href="../css/font.css"/>
+    <link rel="stylesheet" href="/css/font.css"/>
 </head>
 <body>
-<nav class="flex h-20 items-center w-full border-b z-10 top-0" th:replace="common/nav"></nav>
+<nav class="flex h-20 items-center w-full border-b z-20 top-0 sticky bg-white">
+    <div class="flex-grow flex justify-center">
+        <a href="/" class="text-4xl font-bold change">SNAPBIT</a>
 
-<section style="background-image: url(../img/detail2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
+    </div>
+    <div class="justify-around flex-grow flex justify-between change text-lg">
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/">Home</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1" href="/contents">Contents</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/news">News</a>
+        <a class="hover:font-bold hover:scale-110 transition duration-300 ease-in-out transform hover:-translate-y-1"
+           href="/board">Board</a>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
+        <form method="get" action="/signIn">
+            <ul>
+                <button class="focus:outline-none flex items-center">
+                    <p class="mr-4">로그인</p>
+                    <img src="/img/userIcon.svg"
+                         class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                </button>
+            </ul>
+        </form>
+    </div>
+    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+        <form id="signOut">
+            <ul class="flex">
+                <div class="flex items-center">
+                    <a href="/userInfo">
+                        <img src="/img/userIcon.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                    </a>
+                    <p th:text="|${session.user_info.nickname}님|" class="text-lg mr-5"></p>
+                    <button>
+                        <img src="/img/signOut.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                    </button>
+                </div>
+            </ul>
+        </form>
+    </div>
+</nav>
+
+<section style="background-image: url(/img/detail2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
     <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
     <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 340px">
         <p class="mt-2">SNAPBIT의 핵심가치는</p>
@@ -38,13 +80,13 @@
                     </div>
                     <div class="w-full flex h-64 mt-8">
                         <span style="width: 20%" class="text-center text-xl font-bold">내용</span>
-                        <textarea th:value="${boardDto.content}" type="text" name="content" class="focus:outline-none text-xl w-full h-full border"
-                                  placeholder="내용을 입력하세요"></textarea>
+                        <textarea type="text" name="content" class="focus:outline-none text-xl w-full h-full border"
+                                  placeholder="내용을 입력하세요">[[${boardDto.content}]]</textarea>
                     </div>
 
                     <button type="submit" style="right:25%"
                             class="mt-8 w-56 hover:shadow-xl duration-300 transform rounded-full justify-center bg-gray-200 border p-3 mt-8 absolute focus:outline-none flex items-center">
-                        <img src="../img/write.svg" class="h-5 w-5 scale-110 mr-3">
+                        <img src="/img/write.svg" class="h-5 w-5 scale-110 mr-3">
                         <p class="text-xl text-gray-800">수정</p>
                     </button>
                 </form>
