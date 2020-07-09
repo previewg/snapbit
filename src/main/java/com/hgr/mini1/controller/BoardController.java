@@ -40,7 +40,7 @@ public class BoardController {
     public String edit(@PathVariable("no") Long no, Model model) {
         BoardDto boardDTO = boardService.getPost(no);
         model.addAttribute("boardDto", boardDTO);
-        return "board/update.html";
+        return "board/update";
     }
 
     @PutMapping("/post/edit/{no}")

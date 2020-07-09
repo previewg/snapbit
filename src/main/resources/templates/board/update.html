@@ -1,23 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
-    <link href="../css/tailwind.css" rel="stylesheet">  <!--tailwind_Css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.css">
+    <link rel="stylesheet" href="../css/tailwind.css">
+    <!--Google_Font-->
+    <link rel="stylesheet" href="../css/font.css"/>
 </head>
 <body>
+<nav class="flex h-20 items-center w-full border-b z-10 top-0" th:replace="common/nav"></nav>
 
-<form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post">
-    <input type="hidden" name="_method" value="put"/>
-    <input type="hidden" name="id" th:value="${boardDto.id}"/>
-    제목 : <input type="text" name="title" th:value="${boardDto.title}"> <br>
-    작성자 : <input readonly name="author" th:value="${session.user_info.nickname}"> <br>
-    <textarea name="content" th:text="${boardDto.content}"></textarea><br>
-    <button type="submit">수정</button>
-</form>
+<section style="background-image: url(../img/detail2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
+    <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 340px">
+        <p class="mt-2">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    </div>
+    <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
+</section>
+
+<section class="flex justify-center mt-4 w-full h-screen">
+    <article class="w-1/2 border-b mt-8">
+        <div class="border-b mb-2 flex flex-col h-40 justify-around">
+            <p class="font-bold text-4xl">게시물 수정</p>
+            <p class="text-xl text-gray-600" th:text="|${session.user_info.nickname}님이 작성한 게시물입니다|"></p>
+        </div>
+        <div class="flex justify-center">
+            <div class="flex flex-col w-3/4 mb-8 mt-8">
+                <form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post">
+                    <input type="hidden" name="_method" value="put"/>
+                    <input type="hidden" name="id" th:value="${boardDto.id}"/>
+                    <input type="hidden" name="author" th:value="${session.user_info.nickname}">
+                    <div class="w-full flex h-10 items-center">
+                        <span style="width: 20%" class="text-center text-xl font-bold">제목</span>
+                        <input th:value="${boardDto.title}" type="text" name="title" class="focus:outline-none text-xl w-full h-full border-b"
+                               placeholder="제목을 입력하세요">
+                    </div>
+                    <div class="w-full flex h-64 mt-8">
+                        <span style="width: 20%" class="text-center text-xl font-bold">내용</span>
+                        <textarea th:value="${boardDto.content}" type="text" name="content" class="focus:outline-none text-xl w-full h-full border"
+                                  placeholder="내용을 입력하세요"></textarea>
+                    </div>
+
+                    <button type="submit" style="right:25%"
+                            class="mt-8 w-56 hover:shadow-xl duration-300 transform rounded-full justify-center bg-gray-200 border p-3 mt-8 absolute focus:outline-none flex items-center">
+                        <img src="../img/write.svg" class="h-5 w-5 scale-110 mr-3">
+                        <p class="text-xl text-gray-800">수정</p>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </article>
+</section>
+
+
+
+
+
+
 
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
+</script>
 
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 </body>
 </html>
+
+
+

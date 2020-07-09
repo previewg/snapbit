@@ -53,7 +53,6 @@
                     </button>
                     <span class="ml-2">좋아요 0개</span>
                 </div>
-
                 <th:block th:if="${#lists.size(loveeDtoList)} > 0">
                     <th:block th:each="loveeDto:${loveeDtoList}">
                         <div th:if="${loveeDto.user}==${session.user_info.id} and ${loveeDto.board}==${boardDto.id}" class="flex items-center">
@@ -66,6 +65,18 @@
                     </th:block>
                 </th:block>
             </form>
+
+            <!-- 수정/삭제 -->
+            <div class="flex justify-end w-full">
+                <form method="get" th:action="@{'/post/edit/' + ${boardDto.id}}">
+                    <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none">수정</button>
+                </form>
+
+                <form th:action="@{'/post/' + ${boardDto.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="w-12 h-10 hover:bg-gray-200 outline-none">삭제</button>
+                </form>
+            </div>
         </div>
 
         <div th:if="${session.user_info} == null" class="flex items-center">
@@ -74,6 +85,8 @@
             </button>
             <span class="ml-2" th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
         </div>
+
+
     </article>
 
     <!-- 댓글 입력 -->
@@ -86,7 +99,7 @@
                 <input required name="comment" type="text" class="comment text-lg w-full border-b h-12 bg-gray-100 focus:outline-none" placeholder="댓글을 입력하세요">
                 <div class="flex justify-end mt-2">
                     <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" id="comment__cancle" onclick="commentCancle()">취소</button>
-                    <button class="w-12 h-10 hover:bg-gray-200 outline-none" type="submit">댓글</button>
+                    <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none" type="submit">댓글</button>
                 </div>
             </form>
         </div>
@@ -104,35 +117,25 @@
 
 
 <!-- 댓글 리스트 -->
-<section class="h-screen flex flex-col mt-4 w-full" th:if="${commentDtoList} != null">
+<section class="h-screen flex flex-col mt-4 w-full" th:if="${#lists.size(commentDtoList)} > 0">
     <article class="w-1/2 ml-40">
         <div th:each="comment : ${commentDtoList}" class="p-3 w-full flex focus:outline-none hover:bg-gray-100 h-20 border-b">
             <img src="../../img/user.svg" class="w-8 h-8 mr-4">
             <div class="flex-col justify-center mb-5">
-                <p th:text="${comment.nickname}"></p>
-                <p th:text="${comment.comment}" class="text-gray-600"></p>
+                <p th:text="${comment.nickname}" class="text-lg"></p>
+                <p th:text="${comment.comment}" class="text-gray-600 text-lg"></p>
             </div>
         </div>
     </article>
 </section>
 
-<section class="h-screen flex flex-col mt-4 w-full" th:if="${commentDtoList} == null">
-    <article class="w-1/2 ml-40">
-        댓글이 없습니다
+<section class="h-screen flex flex-col mt-4 w-full" th:if="${#lists.size(commentDtoList)} == 0">
+    <article class="w-1/2 ml-40 text-lg">
+        댓글이 없습니다. 첫 댓글을 달아보세요! 🥰🥰
     </article>
 </section>
 
-<!--&lt;!&ndash; 수정/삭제 &ndash;&gt;-->
-<!--<div>-->
-<!--    <a th:href="@{'/post/edit/' + ${boardDto.id}}">-->
-<!--        <button>수정</button>-->
-<!--    </a>-->
-<!--    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">-->
-<!--        <input type="hidden" name="_method" value="delete"/>-->
-<!--        <button id="delete-btn">삭제</button>-->
-<!--    </form>-->
-<!--</div>-->
-<!-- 변수 셋팅 -->
+
 
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
 
