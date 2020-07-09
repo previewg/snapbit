@@ -35,9 +35,9 @@
         <div class="flex-grow flex justify-center transform" th:if="${session.user_info} == null">
             <form method="get" action="/signIn">
                 <ul>
-                    <button
-                            class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 text-white hover:scale-110 change">
-                        Signin
+                    <button>
+                        <img src="../img/userIcon.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </button>
                 </ul>
             </form>
@@ -51,9 +51,9 @@
                                  class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                         </a>
                         <p th:text="|${session.user_info.nickname}님|" class="text-lg text-white mr-5"></p>
-                        <button
-                                class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                            Signout
+                        <button>
+                            <img src="../img/signOut.svg"
+                                 class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                         </button>
                     </div>
                 </ul>
@@ -232,41 +232,51 @@
     </div>
 </section>
 
+<!--소개-->
+<div class="w-full text-blue-800 bg-white h-auto py-20 -mt-64">
+    <div class=" text-center  ">
+        <h1 class=" md:text-4xl sm:text-2xl text-xl mb-4">Snapbit의 <span class="text-6xl">Developer</span></h1>
+        <hr class="W-1/4 mx-auto mb-10 shadow-4xl">
+    </div>
+    <div class="sm:flex content-center justify-center">
+        <div class=" sm:w-2/4 w-3/4 mx-auto h-auto my-6 lg:mx-8 md:mx-4">
+            <h3 class="text-center text-xl my-2">
+                <i class=" fas fa-user-astronaut text-4xl"></i>
+            </h3>
+            <p class=" text-sm text-justify mx-4 text-4xl">허철진
+                <br><span class="text-xl">스냅빗의 선봉장.</span>
+            </p>
+        </div>
+        <div class=" sm:w-2/4 w-3/4 mx-auto h-auto my-6 lg:mx-8 md:mx-4">
+            <h3 class="text-center text-xl my-2">
+                <i class=" fas fa-user-astronaut text-4xl"></i>
+            </h3>
+            <p class=" text-sm text-justify mx-4 text-4xl">김영호
+                <br><span class="text-xl">스냅빗의 해외지사장.</span>
+            </p>
+        </div>
 
-<p class="text-gray-200 font-extrabold -mt-64 text-4xl text-center mb-4 font-bold" style="margin-top: -340px">SNAPBIT의
-    혜택</p>
-<div class="flex justify-center">
-    <section class="text-gray-200 font-bold flex justify-between w-2/3">
-        <article
-                class="bg-gray-900 w-1/5 align-middle text-center border rounded hover:font-extrabold hover:scale-110 transition duration-500 ease-in-out transform">
-            <p>
-                <span class="font-bold text-xl">Effective Marketing</span><br> 조정
-                된 회사간에 서로 다른 고객 풀을 활용 하<br>고 마케팅 이벤트에 대한 협업<br> 을 통한 플랫폼에서의 효과적인 마케팅
+        <div class=" sm:w-2/4 w-3/4 mx-auto h-auto my-6 lg:mx-8 md:mx-4">
+            <h3 class="text-center text-xl my-2">
+                <i class=" fas fa-user-astronaut text-4xl"></i><br>
+            </h3>
+            <p class=" text-sm text-justify mx-4 text-4xl">문준범
+                <br><span class="text-xl">스냅빗의 이사장.</span>
             </p>
-        </article>
-        <article
-                class="bg-gray-900 w-1/5 align-middle text-center border rounded hover:font-extrabold hover:scale-110 transition duration-500 ease-in-out transform">
-            <p>
-                <span class="font-bold text-xl">Global Partnership</span><br>
-                블록체인의 글로벌 인프라를 활용하는 글로벌<br> 기업과 연계하십시오
+        </div>
+
+        <div class=" sm:w-2/4 w-3/4 mx-auto h-auto my-6 lg:mx-8 md:mx-4">
+            <h3 class="text-center text-xl my-2">
+                <i class=" fas fa-user-astronaut text-4xl"></i><br>
+            </h3>
+            <p class=" text-sm text-justify mx-4 text-4xl">박효영
+                <br><span class="text-xl">스냅빗의 운전기사.</span>
             </p>
-        </article>
-        <article
-                class="bg-gray-900 w-1/5 align-middle text-center border rounded hover:font-extrabold hover:scale-110 transition duration-500 ease-in-out transform">
-            <p>
-                <span class="font-bold text-xl">Community Board</span><br>
-                고객들의 소통을 위한 <br>커뮤니티 게시판
-            </p>
-        </article>
-        <article
-                class="bg-gray-900 w-1/5 align-middle text-center border rounded hover:font-extrabold hover:scale-110 transition duration-500 ease-in-out transform">
-            <p>
-                <span class="font-bold text-xl">Incentives for Contribution</span><br>
-                참여 회사는 플랫폼에 대한 기여도에 따라 다양<br>한 인센티브를 얻습니다
-            </p>
-        </article>
-    </section>
+        </div>
+    </div>
+
 </div>
+
 
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
 

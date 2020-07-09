@@ -32,9 +32,9 @@
          th:if="${session.user_info} == null">
         <form method="get" action="/signIn">
             <ul>
-                <button
-                        class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                    Signin
+                <button>
+                    <img src="../img/userIcon.svg"
+                         class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                 </button>
             </ul>
         </form>
@@ -45,12 +45,13 @@
             <ul class="flex">
                 <div class="flex items-center">
                     <a href="/userInfo">
-                        <img src="../img/userIcon.svg" class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
+                        <img src="../img/userIcon.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </a>
-                    <p th:text="|${session.user_info.nickname}님|" class="text-lg mr-5"></p>
-                    <button
-                            class="flex border rounded-lg w-24 text-xl focus:outline-none justify-center p-1 hover:scale-110 change">
-                        Signout
+                    <p th:text="|${session.user_info.nickname}님|" class="text-lg text-white mr-5"></p>
+                    <button>
+                        <img src="../img/signOut.svg"
+                             class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </button>
                 </div>
             </ul>
@@ -167,29 +168,25 @@
 <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 
 <script>
-    $("#main").on("click",function() {
-        alert("asdf");
-    });
-    $("#here").on("click",function() {
-
-    });
 
     let title;
     let description;
+    let link;
 
-    window.onload = () => {
-        $.ajax({
-            type: "GET",
+    window.onload = () => { //페이지 로드시 최초 실행
+        $.ajax({  // 데이터처리
+            type: "GET", // get은 요청 개념 , POST 는 전달 .
             url: "/getNews",
-            success: (result) => {
-                console.log(result);
+            success: (result) => { // 컨틀ㄹ러에서 결과값에 담아옴
                 title=result.items[0].title;
                 description=result.items[0].description;
+                link=result.items[0].link;
                 addNewsMain();
 
                 for (let i=1;i<6;i++) {
                     title = result.items[i].title;
                     description = result.items[i].description;
+                    link=result.items[i].link;
                     addNews();
                 }
             }
@@ -197,18 +194,22 @@
     };
 
     addNewsMain = () => {
-        let html = `<img src="../img/chain.jpg" class="rounded-md object-cover w-full h-64" style="height:600px">\
+
+        let html = `<a href=${link} target="_blank">\
+        <img src="../img/chain.jpg" class="rounded-md object-cover w-full h-64" style="height:600px">\
         <h1 class="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">\
         ${title}\
         </h1>\
         <p class="text-gray-600 mb-4">\
         ${description}\
-        </p>`;
+        </p>\
+        </a>`;
         $('#main').append(html);
     };
 
     addNews = () => {
-        let html = `<div class="rounded w-full flex flex-col md:flex-row mb-10">\
+        let html = `<a href=${link} target="_blank">\
+        <div class="rounded w-full flex flex-col md:flex-row mb-10">\
         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" class="block md:hidden lg:block rounded-md h-64 md:h-32 m-4 md:m-0" />\
         <div class="bg-white rounded px-4">\
           <div class="md:mt-0 text-gray-800 font-semibold text-xl mb-2">\
@@ -218,10 +219,12 @@
             ${description}\
           </p>\
         </div>\
-      </div>`;
+      </div>\
+      </a>`;
         $('#here').append(html);
     };
 </script>
+
 <script>
     $('#signOut').submit(function () {
         $.ajax({
