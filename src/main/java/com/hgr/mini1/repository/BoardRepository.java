@@ -24,4 +24,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     @Query(value = "UPDATE board SET recommend = recommend+1 WHERE board_id=?1", nativeQuery = true)
     public void increaseRecommend(Long id);
 
+    @Transactional
+    public BoardEntity findByIdAndAuthor(Long id,String author);
+
 }

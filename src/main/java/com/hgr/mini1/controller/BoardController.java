@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -71,12 +72,14 @@ public class BoardController {
     defaultValue = "1") Integer pageNum ) {
         List<BoardDto> boardList;
         boardList = boardService.getBoardlist(pageNum);
-        Integer[] pageList;
-        pageList = boardService.getPageList(pageNum);
+        Map<String,Object> map = boardService.getPageList(pageNum);
+        Integer[] pageList =(Integer[]) map.get("pageList");
+        int totalLastPageNum = (int)map.get("totalLastPageNum");
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
         model.addAttribute("nowPage",pageNum );
+        model.addAttribute("totalLastPageNum",totalLastPageNum );
         return "board";
     }
     
@@ -98,8 +101,8 @@ public class BoardController {
     }
 
     @GetMapping("/board/click")
-    public String increaseHit(long board_id){
-        boardService.increseHit(board_id);
+    public String increaseHit(long board_id,String author){
+        boardService.increseHit(board_id,author);
         return("redirect:/post/"+board_id);
     }
 

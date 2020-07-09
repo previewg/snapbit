@@ -17,9 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -87,8 +85,10 @@ public class BoardService {
         return boardDTO;
     }
 
-    public void increseHit (long board_id) {
-        boardRepository.increaseHit(board_id);
+    public void increseHit (long board_id,String author) {
+        if(boardRepository.findByIdAndAuthor(board_id,author) == null){
+            boardRepository.increaseHit(board_id);
+        }
     }
 
     public void increaseRecommend (Long id) {
@@ -137,8 +137,9 @@ public class BoardService {
         return boardRepository.count();
     }
 
-    public Integer[] getPageList(Integer curPageNum) {
-        Integer[] pageList = new Integer[BLOCK_PAGE_NUM_COUNT];
+    public Map<String, Object> getPageList(Integer curPageNum) {
+        Map<String, Object> map = new HashMap<>();
+                Integer[] pageList = new Integer[BLOCK_PAGE_NUM_COUNT];
 
 
         // 총 게시글 갯수
@@ -163,11 +164,14 @@ public class BoardService {
                 pageList[idx] = val;
             }
         }else{
-            for(int val = 1, idx = 0; val <=curPageNum; val++, idx++){
+            for(int val = 1, idx = 0; val <=blockLastPageNum; val++, idx++){
                 pageList[idx] =val;
             }
         }
-        return pageList;
+        map.put("pageList",pageList);
+        map.put("totalLastPageNum",totalLastPageNum);
+        map.put("blockLastPageNum",blockLastPageNum);
+        return map;
     }
 
 

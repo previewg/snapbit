@@ -91,6 +91,7 @@
             <div style="width:50%;text-align: left">
                 <form method="get" action="board/click">
                     <input type="hidden" name="board_id" th:value="${board.id}">
+                    <input type="hidden" name="author" th:value="${session.user_info.nickname}">
                     <button th:text="${board.title}" type="submit"></button>
                 </form>
 
@@ -116,8 +117,14 @@
                 <a th:href="@{'/board?page=' + ${pageNum}}">[[${pageNum}]]</a>
             </div>
         </div>
-        <a class="ml-3" th:href="@{'/board?page='+ ${nowPage+1}}">다음</a>
-        <a class="ml-3" th:href="@{'/board?page='+ ${pageNum}}">마지막</a>
+
+        <a class="mr-3" th:if="${nowPage} >= ${totalLastPageNum}" hidden>다음</a>
+
+        <a class="ml-3" th:unless = "${nowPage} >= ${totalLastPageNum}" th:href="@{'/board?page='+ ${nowPage+1}}">다음</a>
+
+
+
+        <a class="ml-3" th:href="@{'/board?page='+ ${totalLastPageNum}}">마지막</a>
 
         <div th:if="${session.user_info != null}">
             <form action="/board/write" method="get">
