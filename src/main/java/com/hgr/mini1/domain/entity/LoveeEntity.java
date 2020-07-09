@@ -17,14 +17,14 @@ public class LoveeEntity {
     @Column(name = "love_id")
     private Long id;
 
-    @Column(length = 100, nullable = false,name = "user_id")
-    private String user;
+    @Column(nullable = false,name = "user_id")
+    private Long user;
 
-    @Column(length = 100, nullable = false,name = "board_id")
-    private String board;
+    @Column(nullable = false,name = "board_id")
+    private Long board;
 
     @Builder
-    public LoveeEntity(Long id, String user,String board) {
+    public LoveeEntity(Long id, Long user,Long board) {
         this.id=id;
         this.user = user;
         this.board = board;

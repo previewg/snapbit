@@ -8,6 +8,7 @@ import com.hgr.mini1.dto.CommentDto;
 import com.hgr.mini1.dto.LoveeDto;
 import com.hgr.mini1.repository.BoardRepository;
 import com.hgr.mini1.repository.CommentRepository;
+import com.hgr.mini1.repository.LoveeRepository;
 import com.hgr.mini1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,7 @@ public class BoardService {
     private BoardRepository boardRepository;
     private CommentRepository commentRepository;
     private UserRepository userRepository;
+    private LoveeRepository loveeRepository;
 
 
 
@@ -102,7 +104,6 @@ public class BoardService {
     public void deletePost(Long id) {
         boardRepository.deleteById(id);
     }
-
 
     private static final int BLOCK_PAGE_NUM_COUNT = 10;  // 블럭에 존재하는 페이지 번호 수
     private static final int PAGE_POST_COUNT =10;       // 한 페이지에 존재하는 게시글 수
@@ -191,6 +192,28 @@ public class BoardService {
         System.out.println(CommentDtoList);
         return CommentDtoList;
     }
+
+    @Transactional
+    public List<LoveeDto> loveeList(Long id){
+        List<LoveeDto> loveeList = new ArrayList<>();
+        List<LoveeEntity> loveeEntities = loveeRepository.findAllByBoard(id);
+
+        for (LoveeEntity loveEntity :loveeEntities) {
+            loveeList.add(convertEntityToDto(loveEntity));
+        }
+        return loveeList;
+    }
+
+    @Transactional
+    public void SaveboardLike(LoveeDto loveeDto){
+        LoveeEntity loveeEntity = loveeRepository.findByBoardAndUser(loveeDto.getBoard(),loveeDto.getUser());
+        if (loveeEntity != null){
+            loveeRepository.deleteById(loveeEntity.getId());
+        }else{
+            loveeRepository.save(loveeDto.toEntity());
+        }
+    }
+
 
 
 

@@ -79,17 +79,22 @@
 
     <article class="w-1/2 ml-40 mt-4" >
         <div th:if="${session.user_info} != null">
-            <form id="loveePost">
+            <form action="board/like" method="post">
                 <input type="hidden" name="user_id" th:value="${session.user_info.id}">
                 <input type="hidden" name="board_id" th:value="${boardDto.id}">
-                <button>
-                    <img src="../img/like.svg" class="h-5 w-5">
+                <button th:each="loveeDto:${loveeDtoList}">
+                    <th:block th:if="${loveeDto.user}==${session.user_info.id} && {loveeDto.board}=={boardDto.id}">
+                        <img src="../img/like.svg" class="h-5 w-5">
+                    </th:block>
+                    <th:block th:if="${loveeDto.user}!=${session.user_info.id} || {loveeDto.board}!={boardDto.id}">
+                        <img src="../img/unlike.svg" class="h-5 w-5">
+                    </th:block>
                 </button>
             </form>
         </div>
 
         <div th:if="${session.user_info} == null">
-            <button>
+            <button onclick="userVerify()">
                 <img src="../img/unlike.svg" class="h-5 w-5">
             </button>
         </div>
@@ -168,8 +173,12 @@
         $('.comment').val('')
         $('.comment').focus();
     }
-</script>
-<script>
+
+    function userVerify() {
+        alert("로그인 후 이용바랍니다.");
+        return false;
+    }
+
     $('[name=comment]').keydown(function(e) {
         if (e.keyCode === 13) {
             if($(this).val() != '') {
@@ -178,14 +187,13 @@
             return false;
         }
     });
+
 </script>
 
-<script>
-    function userVerify() {
-        alert("로그인 후 이용바랍니다.");
-        return false;
-    }
-</script>
+
+
+
+
 
 </body>
 </html>

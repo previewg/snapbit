@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoveeDto {
     private Long id;
-    private String user;
-    private String board;
+    private Long user;
+    private Long board;
 
     public LoveeEntity toEntity() {
         LoveeEntity loveeEntity = LoveeEntity.builder()
@@ -23,7 +23,7 @@ public class LoveeDto {
     }
 
     @Builder
-    public LoveeDto(Long id, String user,String board) {
+    public LoveeDto(Long id, Long user,Long board) {
         this.id = id;
         this.user = user;
         this.board =board;

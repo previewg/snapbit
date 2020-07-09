@@ -3,6 +3,7 @@ package com.hgr.mini1.controller;
 
 import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.CommentDto;
+import com.hgr.mini1.dto.LoveeDto;
 import com.hgr.mini1.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class BoardController {
     public String detail(@PathVariable("no") Long no,Model model) {
         BoardDto boardDto = boardService.getPost(no);
         List<CommentDto> commentDtoList = boardService.commentList(no);
+        List<LoveeDto> loveeDtoList = boardService.loveeList(no);
+
+        model.addAttribute("loveeDtoList",loveeDtoList);
         model.addAttribute("boardDto", boardDto);
         model.addAttribute("commentDtoList",commentDtoList);
         return "board/detail";
@@ -97,5 +101,11 @@ public class BoardController {
     public String increaseHit(long board_id){
         boardService.increseHit(board_id);
         return("redirect:/post/"+board_id);
+    }
+
+    @PostMapping("/board/like")
+    public String SaveboardLike(LoveeDto loveeDto){
+        boardService.SaveboardLike(loveeDto);
+        return "redirect:/post/" + loveeDto.getBoard();
     }
 }
