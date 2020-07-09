@@ -13,6 +13,7 @@ import com.hgr.mini1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,19 +30,6 @@ public class BoardService {
     private LoveeRepository loveeRepository;
 
 
-
-    /*검색기능*/
-    @Transactional
-    public List<BoardDto> searchPosts(String keyword) {
-        List<BoardEntity> boardEntities = boardRepository.findByTitleContaining(keyword);
-        List<BoardDto> boardDtoList = new ArrayList<>();
-
-        if (boardEntities.isEmpty()) return boardDtoList;
-        for (BoardEntity boardEntity : boardEntities) {
-            boardDtoList.add(this.convertEntityToDto(boardEntity));
-        }
-        return boardDtoList;
-    }
 
     private BoardDto convertEntityToDto(BoardEntity boardEntity) {
         return BoardDto.builder()
@@ -111,23 +99,18 @@ public class BoardService {
 
     /*페이징*/
     @Transactional
-    public List<BoardDto> getBoardlist(Integer pageNum) {
-        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1,
+    public List<BoardDto> getBoardlist(Integer pageNum, String keyword) {
+        Pageable page = PageRequest.of(pageNum - 1,
                 PAGE_POST_COUNT, Sort.by(Sort.Direction.DESC,
-                        "createdDate")));
-        List<BoardEntity> boardEntities = page.getContent();
+                        "createdDate"));
+
+        Page<BoardEntity> pageEntities = boardRepository.findByTitleContaining(keyword, page);
+        List<BoardEntity> boardEntities = pageEntities.getContent();
         List<BoardDto> boardDtoList = new ArrayList<>();
 
+        if (boardEntities.isEmpty()) return boardDtoList;
         for (BoardEntity boardEntity : boardEntities) {
-            BoardDto boardDTO = BoardDto.builder()
-                    .id(boardEntity.getId())
-                    .title(boardEntity.getTitle())
-                    .content(boardEntity.getContent())
-                    .author(boardEntity.getAuthor())
-                    .hit(boardEntity.getHit())
-                    .createdDate(boardEntity.getCreatedDate())
-                    .build();
-            boardDtoList.add(boardDTO);
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
         }
 
         return boardDtoList;

@@ -2,6 +2,8 @@ package com.hgr.mini1.repository;
 
 
 import com.hgr.mini1.domain.entity.BoardEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +14,8 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
-    List<BoardEntity> findByTitleContaining(String keyword);
+    Page<BoardEntity> findByTitleContaining(String keyword, Pageable pageable);
+
 
     @Transactional
     @Modifying

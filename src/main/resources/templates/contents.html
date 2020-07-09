@@ -173,5 +173,20 @@
     });
 
 </script>
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
+</script>
 </body>
 </html>

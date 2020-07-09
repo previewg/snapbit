@@ -63,7 +63,7 @@
 <section class="h-screen flex flex-col items-center mt-4 w-full">
     <!-- Search Bar -->
     <article class="w-3/5 flex mt-20 justify-end h-16 text-lg items-center mb-6">
-        <form action="/board/search" method="GET" class="flex items-center">
+        <form action="/board" method="GET" class="flex items-center">
             <input id="search" type="text" name="keyword" placeholder="검색어를 입력해주세요." value=""
                    class="border-b py-1 px-4 focus:outline-none mr-4">
 
@@ -159,6 +159,21 @@
     function userVerify() {
         alert("로그인 후 이용바랍니다.");
     }
+</script>
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
 </script>
 
 </body>

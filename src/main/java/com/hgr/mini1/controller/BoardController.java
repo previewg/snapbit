@@ -22,13 +22,7 @@ public class BoardController {
     HttpSession session;
 
 
-    /*검색기능*/
-    @GetMapping("/board/search")
-    public String search(@RequestParam(value = "keyword") String keyword, Model model) {
-        List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
-        model.addAttribute("boardList", boardDtoList);
-        return "board";
-    }
+
 
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no,Model model) {
@@ -72,9 +66,11 @@ public class BoardController {
     @GetMapping("/board")
     public String list(Model model,
                        @RequestParam(value="page",
-    defaultValue = "1") Integer pageNum ) {
+    defaultValue = "1") Integer pageNum,
+                       @RequestParam(value = "keyword", defaultValue = "") String keyword) {
         List<BoardDto> boardList;
-        boardList = boardService.getBoardlist(pageNum);
+        boardList = boardService.getBoardlist(pageNum,keyword);
+
         Map<String,Object> map = boardService.getPageList(pageNum);
         Integer[] pageList =(Integer[]) map.get("pageList");
         int totalLastPageNum = (int)map.get("totalLastPageNum");

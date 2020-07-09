@@ -111,8 +111,6 @@
         </div>
     </article>
 
-
-
     <!-- 댓글 입력 -->
     <article class="w-1/2 ml-40 mt-4 flex flex-col">
         <p class="text-xl font-bold mb-3">댓글</p>
@@ -204,8 +202,22 @@
 
 </script>
 
-
-
+<!--로그아웃-->
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
+</script>
 
 
 

@@ -97,7 +97,21 @@
 
 
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
-
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
+    })
+</script>
 
 </body>
 </html>
