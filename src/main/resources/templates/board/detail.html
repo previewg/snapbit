@@ -79,17 +79,25 @@
 
     <article class="w-1/2 ml-40 mt-4" >
         <div th:if="${session.user_info} != null">
-            <form action="board/like" method="post">
-                <input type="hidden" name="user_id" th:value="${session.user_info.id}">
-                <input type="hidden" name="board_id" th:value="${boardDto.id}">
-                <button th:each="loveeDto:${loveeDtoList}">
-                    <th:block th:if="${loveeDto.user}==${session.user_info.id} && {loveeDto.board}=={boardDto.id}">
-                        <img src="../img/like.svg" class="h-5 w-5">
-                    </th:block>
-                    <th:block th:if="${loveeDto.user}!=${session.user_info.id} || {loveeDto.board}!={boardDto.id}">
+            <form action="/board/like" method="post">
+                <input type="hidden" name="user" th:value="${session.user_info.id}">
+                <input type="hidden" name="board" th:value="${boardDto.id}">
+                <th:block th:if="${#lists.size(loveeDtoList)} == 0">
+                    <button>
                         <img src="../img/unlike.svg" class="h-5 w-5">
+                    </button>
+                </th:block>
+
+                <th:block th:if="${#lists.size(loveeDtoList)} > 0">
+                    <th:block th:each="loveeDto:${loveeDtoList}">
+                        <th:block th:if="${loveeDto.user}==${session.user_info.id} and ${loveeDto.board}==${boardDto.id}">
+                            <button>
+                                <img src="../img/like.svg" class="h-5 w-5">
+                            </button>
+                        </th:block>
+                        </button>
                     </th:block>
-                </button>
+                </th:block>
             </form>
         </div>
 

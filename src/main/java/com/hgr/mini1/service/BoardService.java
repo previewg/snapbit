@@ -195,13 +195,14 @@ public class BoardService {
 
     @Transactional
     public List<LoveeDto> loveeList(Long id){
-        List<LoveeDto> loveeList = new ArrayList<>();
+        List<LoveeDto> loveeDtoList = new ArrayList<>();
         List<LoveeEntity> loveeEntities = loveeRepository.findAllByBoard(id);
-
+        System.out.println(loveeEntities);
         for (LoveeEntity loveEntity :loveeEntities) {
-            loveeList.add(convertEntityToDto(loveEntity));
+            System.out.println(loveEntity);
+            loveeDtoList.add(convertEntityToDto(loveEntity));
         }
-        return loveeList;
+        return loveeDtoList;
     }
 
     @Transactional
