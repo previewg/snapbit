@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <link rel="stylesheet" href="../css/phone.css"/>
     <link rel="stylesheet" href="../css/tailwind.css">
+    <link rel="stylesheet" href="../css/background.css"/>
     <!--Google_Font-->
     <link rel="stylesheet" href="../css/font.css"/>
-    <link rel="stylesheet" href="../css/background.css"/>
-
 </head>
 
 <body>
-<!-- 첫 메인 화면-->
+
+<!-- Main Page -->
 <section id="main">
     <nav id="navbar" class="flex h-20 items-center w-full top-0 z-30 fixed">
         <div class="flex-grow flex justify-center">
@@ -88,7 +88,7 @@
 </section>
 
 
-<!-- 블록체인 소개 -->
+<!-- Blockchain Introduction -->
 <section class="flex items-center h-screen w-full justify-center">
     <article class="w-4/5 flex justify-around">
         <div class="flex flex-col items-start w-1/3 overflow-hidden">
@@ -108,9 +108,9 @@
     </article>
 </section>
 
-<!-- 가상화폐 소개 -->
 
-<section class="flex justify-between items-center bg-black mt-64 mb-64" style="height: 500px">
+<!-- Cryptocurrency Introduction -->
+<section class="flex justify-between items-center bg-black mt-64 mb-56" style="height: 500px">
     <img src="../img/coin.jpg" class="z-10 relative" style="height: 400px;top:-150px">
     <div class="absolute h-full bg-white" style="width:700px"></div>
     <article class="flex flex-col justify-center p-10" style="height: 80%;width:35%">
@@ -122,27 +122,32 @@
     </article>
 </section>
 
-<!-- 중간 차트 정보 -->
-<section class="w-full flex flex-col items-center justify-around" style="height: 800px">
-    <div class="w-2/3 flex flex-col" >
+<!-- Medium-Chart Information -->
+<section class="h-screen w-full flex items-center justify-around" style="height: 800px">
+    <div class="pb-56 w-1/2 ml-32 items-start flex flex-col">
         <div class="flex">
             <p class="text-5xl font-bold mb-10 mr-10">
                 <strong>Trendy</strong>하다?&nbsp;&nbsp;<strong>SNAPBIT</strong>하다!
             </p>
-            <img id="bitcoin" src="../img/bitcoinlogo.svg" class="w-20 h-20 transform transition hover:-translate-y-12 hover:translate-x-12 hover:scale-150 ease-in-out duration-300">
+            <img id="bitcoin" src="../img/bitcoinlogo.svg"
+                 class="w-20 h-20 transform transition hover:-translate-y-12 hover:translate-x-12 hover:scale-150 ease-in-out duration-300">
         </div>
         <div class="flex text-gray-500">
-            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">#암호화폐</p>
-            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">#비트코인</p>
-            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">#이더리움</p>
-            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">#거래소</p>
-            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">#SNAPBIT</p>
+            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">
+                #암호화폐</p>
+            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">
+                #비트코인</p>
+            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">
+                #이더리움</p>
+            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">
+                #거래소</p>
+            <p class="text-2xl mr-3 transform transition hover:translate-y-3 ease-in-out duration-150 hover:text-red-400">
+                #SNAPBIT</p>
         </div>
-
     </div>
 
-    <div class="flex justify-between w-3/5">
-        <article data-aos="zoom-in-right" class="hover:shadow-2xl" style="height: 420px;width: 440px">
+    <div class="w-1/2 flex justify-around">
+        <article data-aos="zoom-in-right" class="shadow-2xl" style="height: 400px;width: 350px">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
             </div>
@@ -154,10 +159,10 @@
                     "BITHUMB:BTCKRW",
                         "width"
                 :
-                    "440",
+                    "350",
                         "height"
                 :
-                    "420",
+                    "400",
                         "locale"
                 :
                     "kr",
@@ -166,16 +171,16 @@
                     "12m",
                         "colorTheme"
                 :
-                    "dark",
+                    "light",
                         "trendLineColor"
                 :
-                    "#37a6ef",
+                    "#219FFF",
                         "underLineColor"
                 :
-                    "rgba(55, 166, 239, 0.15)",
+                    "#D2ECFF",
                         "isTransparent"
                 :
-                    false,
+                    true,
                         "autosize"
                 :
                     true,
@@ -186,8 +191,8 @@
             </script>
         </article>
 
-        <article data-aos="zoom-in-left" class="hover:shadow-2xl"
-                 style="height: 420px;width: 440px;">
+        <article data-aos="zoom-in-left" class="shadow-2xl"
+                 style="height: 400px;width: 350px;">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
             </div>
@@ -199,13 +204,13 @@
                     "1D",
                         "width"
                 :
-                    440,
+                    350,
                         "isTransparent"
                 :
-                    false,
+                    true,
                         "height"
                 :
-                    420,
+                    400,
                         "symbol"
                 :
                     "BITHUMB:BTCKRW",
@@ -217,24 +222,23 @@
                     "kr",
                         "colorTheme"
                 :
-                    "dark"
+                    "light"
                 }
             </script>
         </article>
     </div>
 </section>
 
-
-<!-- 큰 차트 정보 -->
-<section class="h-screen flex-col justify-center items-center">
-    <p class="text-3xl font-bold">Bitcoin chart</p>
+<!-- Big-Chart Information -->
+<section class="h-screen flex-col flex justify-center items-center mb-56">
+    <p class="text-4xl font-bold mb-6 italic">실시간 코인 차트도 한눈에!</p>
     <div class="tradingview-widget-container">
         <div id="tradingview_600bc"></div>
     </div>
 </section>
 
-<!--소개-->
-<div class="w-full text-blue-800 bg-white h-auto py-20 -mt-64">
+<!-- 소개 -->
+<div class="w-full text-blue-800 bg-white h-auto py-20">
     <div class=" text-center  ">
         <h1 class=" md:text-4xl sm:text-2xl text-xl mb-4">Snapbit의 <span class="text-6xl">Developer</span></h1>
         <hr class="W-1/4 mx-auto mb-10 shadow-4xl">
@@ -279,19 +283,17 @@
 </div>
 
 
+
+
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
-
-
 <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <!--AOS JS-->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>AOS.init();</script>
-<!--Nav JS-->
+<!--Navigation JS-->
 <script src="../js/navbar.js"></script>
 <!--News JS-->
 <script src="../js/newsData.js"></script>
-<!--SignIn__btn JS-->
-<script src="../js/signIn_btn.js"></script>
 <!--Chart JS-->
 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 <script type="text/javascript">
@@ -312,9 +314,6 @@
         }
     );
 </script>
-
-<!--<script src="../js/phone.js"></script>-->
-
 <!--SignOut JS-->
 <script>
     $('#signOut').submit(function () {
@@ -332,6 +331,7 @@
     })
 </script>
 
-</body>
+<!--<script src="../js/phone.js"></script>-->
 
+</body>
 </html>
