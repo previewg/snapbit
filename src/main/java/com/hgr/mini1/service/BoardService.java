@@ -2,9 +2,10 @@ package com.hgr.mini1.service;
 
 import com.hgr.mini1.domain.entity.BoardEntity;
 import com.hgr.mini1.domain.entity.CommentEntity;
-import com.hgr.mini1.domain.entity.UserEntity;
+import com.hgr.mini1.domain.entity.LoveeEntity;
 import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.CommentDto;
+import com.hgr.mini1.dto.LoveeDto;
 import com.hgr.mini1.repository.BoardRepository;
 import com.hgr.mini1.repository.CommentRepository;
 import com.hgr.mini1.repository.UserRepository;
@@ -48,7 +49,6 @@ public class BoardService {
                 .content(boardEntity.getContent())
                 .author(boardEntity.getAuthor())
                 .hit(boardEntity.getHit())
-                .recommend(boardEntity.getHit())
                 .createdDate(boardEntity.getCreatedDate())
                 .build();
     }
@@ -58,6 +58,14 @@ public class BoardService {
                 .id(commentEntity.getId())
                 .comment(commentEntity.getComment())
                 .nickname(commentEntity.getNickname())
+                .build();
+    }
+
+    private LoveeDto convertEntityToDto(LoveeEntity loveeEntity) {
+        return LoveeDto.builder()
+                .id(loveeEntity.getId())
+                .user(loveeEntity.getUser())
+                .board(loveeEntity.getBoard())
                 .build();
     }
 
@@ -72,14 +80,13 @@ public class BoardService {
                 .content(boardEntity.getContent())
                 .author(boardEntity.getAuthor())
                 .hit(boardEntity.getHit())
-                .recommend(boardEntity.getRecommend())
                 .createdDate(boardEntity.getCreatedDate())
                 .build();
         return boardDTO;
     }
 
-    public void increseHit (Long id) {
-        boardRepository.increaseHit(id);
+    public void increseHit (long board_id) {
+        boardRepository.increaseHit(board_id);
     }
 
     public void increaseRecommend (Long id) {
@@ -116,7 +123,6 @@ public class BoardService {
                     .content(boardEntity.getContent())
                     .author(boardEntity.getAuthor())
                     .hit(boardEntity.getHit())
-                    .recommend(boardEntity.getRecommend())
                     .createdDate(boardEntity.getCreatedDate())
                     .build();
             boardDtoList.add(boardDTO);

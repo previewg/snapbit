@@ -4,7 +4,6 @@ package com.hgr.mini1.dto;
 import com.hgr.mini1.domain.entity.CommentEntity;
 import lombok.*;
 
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

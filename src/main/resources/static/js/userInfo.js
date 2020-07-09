@@ -13,6 +13,7 @@ let emailVerified = true;
 let pwdVerified = false;
 let nickVerified = true;
 
+let list = [];
 
 $('#signUp__email').on("propertychange change keyup paste input",
     function () {

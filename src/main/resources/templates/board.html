@@ -85,11 +85,15 @@
             <p style="width:10%">조회수</p>
         </div>
 
-        <div th:each="board : ${boardList}" style="font-weight: 300"
-             class="w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
+        <div th:each="board:${boardList}" style="font-weight: 200"
+             class="text-lg w-full items-center flex focus:outline-none hover:bg-gray-100 hover:text-gray-800 text-gray-600 h-16 border-b text-center">
             <p style="width:10%" class="text-center" th:text="${board.id}"></p>
             <div style="width:50%;text-align: left">
-                <a th:href="@{'/post/' + ${board.id}}" th:text="${board.title}"></a>
+                <form method="get" action="board/click">
+                    <input type="hidden" name="board_id" th:value="${board.id}">
+                    <button th:text="${board.title}" type="submit"></button>
+                </form>
+
             </div>
             <p th:text="${board.author}" style="width:10%" class="text-center"></p>
             <p th:text="${#temporals.format(board.createdDate, 'M월 d일 HH:mm')}" style="width:20%"
@@ -140,7 +144,6 @@
         alert("로그인 후 이용바랍니다.");
     }
 </script>
-
 
 </body>
 

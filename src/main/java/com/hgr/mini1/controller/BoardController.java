@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,7 +29,6 @@ public class BoardController {
     public String detail(@PathVariable("no") Long no,Model model) {
         BoardDto boardDto = boardService.getPost(no);
         List<CommentDto> commentDtoList = boardService.commentList(no);
-
         model.addAttribute("boardDto", boardDto);
         model.addAttribute("commentDtoList",commentDtoList);
         return "board/detail";
@@ -91,9 +89,13 @@ public class BoardController {
 
     @PostMapping("/board/comment")
     public String saveComment(CommentDto commentDto,long board_id){
-        System.out.println(commentDto);
-        System.out.println(board_id);
         boardService.saveComment(commentDto,board_id);
         return "redirect:/post/" + board_id;
+    }
+
+    @GetMapping("/board/click")
+    public String increaseHit(long board_id){
+        boardService.increseHit(board_id);
+        return("redirect:/post/"+board_id);
     }
 }

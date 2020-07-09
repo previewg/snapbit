@@ -15,6 +15,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     List<BoardEntity> findByTitleContaining(String keyword);
 
     @Transactional
+    @Modifying
     @Query(value = "UPDATE board SET hit = hit+1 WHERE board_id=?1", nativeQuery = true)
     public void increaseHit(Long id);
 

@@ -28,19 +28,17 @@ public class BoardEntity extends TimeEntity {
 
     @ColumnDefault("0")
     private int hit;
-    private int recommend;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
 
     @Builder
-    public BoardEntity(Long id,String title, String content, String author, int hit, int recommend) {
+    public BoardEntity(Long id,String title, String content, String author, int hit) {
         this.id=id;
         this.author = author;
         this.title = title;
         this.content = content;
         this.hit = hit;
-        this.recommend = recommend;
     }
 
 }
