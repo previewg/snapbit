@@ -83,8 +83,7 @@ public class BoardController {
     }
     
     @GetMapping("/board/write")
-    public String write(Model model) {
-        model.addAttribute(session.getAttribute("user_info"));
+    public String write() {
         return "board/write";
     }
 

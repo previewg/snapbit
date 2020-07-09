@@ -82,32 +82,32 @@
             <form action="/board/like" method="post">
                 <input type="hidden" name="user" th:value="${session.user_info.id}">
                 <input type="hidden" name="board" th:value="${boardDto.id}">
-                <th:block th:if="${#lists.size(loveeDtoList)} == 0">
-                    <button>
+                <div th:if="${#lists.size(loveeDtoList)} == 0" class="flex items-center">
+                    <button class="transform transition duration-300 hover:scale-105 hover:-translate-y-2 focus:outline-none">
                         <img src="../img/unlike.svg" class="h-5 w-5">
                     </button>
-                    <span>좋아요 0개</span>
-                </th:block>
+                    <span class="ml-2">좋아요 0개</span>
+                </div>
 
                 <th:block th:if="${#lists.size(loveeDtoList)} > 0">
                     <th:block th:each="loveeDto:${loveeDtoList}">
-                        <th:block th:if="${loveeDto.user}==${session.user_info.id} and ${loveeDto.board}==${boardDto.id}">
-                            <button>
+                        <div th:if="${loveeDto.user}==${session.user_info.id} and ${loveeDto.board}==${boardDto.id}" class="flex items-center">
+                            <button class="transform transition duration-300 hover:scale-105 hover:-translate-y-2 focus:outline-none">
                                 <img src="../img/like.svg" class="h-5 w-5">
                             </button>
-                            <span th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
-                        </th:block>
+                            <span class="ml-2" th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
+                        </div>
                         </button>
                     </th:block>
                 </th:block>
             </form>
         </div>
 
-        <div th:if="${session.user_info} == null">
-            <button onclick="userVerify()">
+        <div th:if="${session.user_info} == null" class="flex items-center">
+            <button onclick="userVerify()" class="transform transition duration-300 hover:scale-105 hover:-translate-y-2 focus:outline-none">
                 <img src="../img/unlike.svg" class="h-5 w-5">
             </button>
-            <span th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
+            <span class="ml-2" th:text="|좋아요 ${#lists.size(loveeDtoList)}개|"></span>
         </div>
     </article>
 

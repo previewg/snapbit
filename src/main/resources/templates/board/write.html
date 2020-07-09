@@ -54,45 +54,38 @@
     <p class="text-white text-4xl mt-16 z-10" style="width: 540px">스냅빗은 여러분과 함께 만들어 갑니다</p>
 </section>
 
-<section class="flex flex-col mt-4 w-full">
-
-
-    <!-- 게시물-->
-    <article class="w-1/2 ml-40 border-b mt-8">
+<section class="flex justify-center mt-4 w-full h-screen">
+    <article class="w-1/2 border-b mt-8">
         <div class="border-b mb-2 flex flex-col h-40 justify-around">
             <p class="font-bold text-4xl">게시글 작성</p>
+            <p class="text-xl text-gray-600" th:text="|${session.user_info.nickname}님이 게시글을 작성중입니다|"> </p>
         </div>
-        <div class="flex flex-col w-3/4 mb-8 mt-8">
-            <input class="text-xl">
+        <div class="flex justify-center">
+            <div class="flex flex-col w-3/4 mb-8 mt-8">
+                <form action="/post" method="post">
+                    <input type="hidden" name="author" th:value="${session.user_info.nickname}">
+                    <div class="w-full flex h-10 items-center">
+                        <span style="width: 20%" class="text-center text-xl font-bold">제목</span>
+                        <input type="text" name="title" class="focus:outline-none text-xl w-full h-full border-b" placeholder="제목을 입력하세요">
+                    </div>
+                    <div class="w-full flex h-64 mt-8">
+                        <span style="width: 20%"class="text-center text-xl font-bold">내용</span>
+                        <textarea type="text" name="content" class="focus:outline-none text-xl w-full h-full border" placeholder="내용을 입력하세요"></textarea>
+                    </div>
+
+                    <button type="submit" style="right:25%"class="mt-8 w-56 hover:shadow-xl duration-300 transform rounded-full justify-center bg-gray-200 border p-3 mt-8 absolute focus:outline-none flex items-center">
+                        <img src="../img/write.svg" class="h-5 w-5 scale-110 mr-3">
+                        <p class="text-xl text-gray-800">제출</p>
+                    </button>
+                </form>
+            </div>
         </div>
     </article>
-
 </section>
 
 
-<div>
-    <div>
-        <h3>게시글 작성</h3>
-    </div>
-</div>
 
-<div id="board-list">
-    <div class="container">
-        <table class="board-table">
-            <thead>
-            <form action="/post" method="post">
-                제목:
-                <input type="text" name="title"><br>
-                <input type="hidden" name="author" th:value="${session.user_info.nickname}"><br>
-                내용:
-                <textarea name="content"></textarea><br>
 
-                <input type="submit" value="글쓰기">
-            </form>
-            </thead>
-        </table>
-    </div>
-</div>
 
 
 
