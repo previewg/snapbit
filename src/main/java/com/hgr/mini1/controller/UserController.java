@@ -2,12 +2,14 @@ package com.hgr.mini1.controller;
 
 
 import com.hgr.mini1.domain.entity.UserEntity;
+import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.UserDto;
 import com.hgr.mini1.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -79,8 +81,13 @@ public class UserController {
     public String userDelete() {
         UserEntity userInfo = (UserEntity) session.getAttribute("user_info");
         userService.userDelete(userInfo);
-
         return "success";
+    }
+
+    @PutMapping("/user/update")
+    public String userUpdate(UserDto userDto) {
+        userService.userUpdate(userDto);
+        return "board/updateComplete";
     }
 
 

@@ -46,7 +46,7 @@ public class BoardController {
     @PutMapping("/post/edit/{no}")
     public String update(BoardDto boardDTO) {
         boardService.savePost(boardDTO);
-        return "redirect:/board";
+        return "redirect:/post/"+boardDTO.getId();
     }
 
     @DeleteMapping("/post/{no}")

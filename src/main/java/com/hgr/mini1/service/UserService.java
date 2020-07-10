@@ -1,6 +1,7 @@
 package com.hgr.mini1.service;
 
 import com.hgr.mini1.domain.entity.UserEntity;
+import com.hgr.mini1.dto.BoardDto;
 import com.hgr.mini1.dto.UserDto;
 import com.hgr.mini1.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,4 +73,8 @@ public class UserService {
         userRepository.deleteById(userDto.getId());
     }
 
+    @Transactional
+    public void userUpdate(UserDto userDto) {
+        userRepository.save(userDto.toEntity());
+    }
 }
