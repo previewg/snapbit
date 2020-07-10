@@ -67,16 +67,18 @@
             </form>
 
             <!-- 수정/삭제 -->
-            <div class="flex justify-end w-full">
-                <form method="get" th:action="@{'/post/edit/' + ${boardDto.id}}">
-                    <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none">수정</button>
-                </form>
+            <th:block th:if="${boardDto.author} == ${session.user_info.nickname}">
+                <div class="flex justify-end w-full">
+                    <form method="get" th:action="@{'/post/edit/' + ${boardDto.id}}">
+                        <button class="w-12 h-10 hover:bg-gray-200 focus:outline-none">수정</button>
+                    </form>
 
-                <form th:action="@{'/post/' + ${boardDto.id}}" method="post">
-                    <input type="hidden" name="_method" value="delete"/>
-                    <button class="w-12 h-10 hover:bg-gray-200 outline-none">삭제</button>
-                </form>
-            </div>
+                    <form th:action="@{'/post/' + ${boardDto.id}}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button class="w-12 h-10 hover:bg-gray-200 outline-none">삭제</button>
+                    </form>
+                </div>
+            </th:block>
         </div>
 
         <div th:if="${session.user_info} == null" class="flex items-center">
@@ -186,7 +188,6 @@
         return false;
     })
 </script>
-
 
 
 </body>

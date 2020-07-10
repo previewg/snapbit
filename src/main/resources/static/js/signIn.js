@@ -124,7 +124,7 @@ $("#signIn__form").submit(function () {
         data: $("#signIn__form").serialize(),
         success: function (res) {
             if (res.verified === "correct") {
-                alert(res.username + " 님 반갑습니다!");
+                alert(res.username + "님 반갑습니다!");
                 location = "/";
             } else {
                 alert("이메일 / 비밀번호를 확인바랍니다.");
