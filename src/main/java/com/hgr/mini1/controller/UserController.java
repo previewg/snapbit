@@ -86,6 +86,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public String userUpdate(UserDto userDto) {
+        System.out.println(userDto);
         userService.userUpdate(userDto);
         return "board/updateComplete";
     }

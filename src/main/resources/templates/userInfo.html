@@ -21,7 +21,7 @@
         <div class="form-container sign-up-container">
             <form id="userInfo__info" action="/user/update" method="post">
                 <input type="hidden" name="_method" value="put"/>
-                <input type="hidden" name="id" value="${session.user_info.id}">
+                <input type="hidden" name="id" th:value="${session.user_info.id}">
                 <p class="text-3xl mb-5">계정 정보</p>
                 <div class="flex justify-between">
                     <input required placeholder="이름" type="text" th:value="${session.user_info.name}" name="name"
