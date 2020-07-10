@@ -12,9 +12,9 @@
 
 <section style="background-image: url(../img/bitcoin2.jpg); height: 350px" class="w-full flex flex-col items-center justify-center">
     <div style="background-color: rgba(0, 0, 0, 0.3);height: 350px" class="w-full absolute"></div>
-    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 340px">
-        <p class="mt-2">SNAPBIT의 핵심가치는</p>
-        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 500px">
+        <p class="mt-2 text-2xl">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2 text-2xl">모든 고객이 만족할 수 있는 서비스 입니다</p>
     </div>
 </section>
 
@@ -52,14 +52,14 @@
                     <form method="get" action="board/click">
                         <input type="hidden" name="board_id" th:value="${board.id}">
                         <input type="hidden" name="author" th:value="${session.user_info.nickname}">
-                        <button th:text="${board.title}" type="submit"></button>
+                        <button class="focus:outline-none" th:text="${board.title}" type="submit"></button>
                     </form>
                 </th:block>
                 <th:block th:if="${session.user_info}==null">
                     <form method="get" action="board/click">
                         <input type="hidden" name="board_id" th:value="${board.id}">
                         <input type="hidden" name="author" th:value="root">
-                        <button th:text="${board.title}" type="submit"></button>
+                        <button class="focus:outline-none" th:text="${board.title}" type="submit"></button>
                     </form>
                 </th:block>
 
@@ -81,7 +81,8 @@
 
 
         <div th:each="pageNum : ${pageList}" th:inline="text">
-            <div th:if="${pageNum}!=null" class="flex w-8 h-8 justify-center items-center bg-blue-700 text-white">
+            <div th:if="${pageNum}!=null" class="flex w-8 h-8 justify-center items-center bg-gray-500
+             rounded-full hover:bg-orange-500 text-white">
                 <a th:href="@{'/board?page=' + ${pageNum}}">[[${pageNum}]]</a>
             </div>
         </div>
@@ -112,7 +113,7 @@
     </article>
 </section>
 <footer class="h-40 flex items-center justify-around bg-black text-gray-400" th:replace="common/footer"></footer>
-
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
 <!-- User Verifying JS for writing post -->
 <script>
     function userVerify() {

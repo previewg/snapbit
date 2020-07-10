@@ -13,15 +13,13 @@
 
 
 <section
-        style="background-image: url(../img/bitcoin2.jpg); height: 350px"
+        style="background-image: url(../img/contents.jpg); height: 350px"
         class="w-full flex flex-col items-center justify-center">
     <div style="background-color: rgba(0, 0, 0, 0.3); height: 350px"
          class="w-full absolute"></div>
-    <div
-            class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"
-            style="width: 340px">
-        <p class="mt-2">SNAPBIT의 핵심가치는</p>
-        <p class="mb-2">모든 고객이 만족할 수 있는 서비스 입니다</p>
+    <div class="border-t-2 border-b-2 text-white flex-col flex items-center text-lg z-10"style="width: 500px">
+        <p class="mt-2 text-2xl">SNAPBIT의 핵심가치는</p>
+        <p class="mb-2 text-2xl">모든 고객이 만족할 수 있는 서비스 입니다</p>
     </div>
 </section>
 
@@ -64,7 +62,7 @@
 <script>
 
     $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBlT8QAcxDfx_33PbFMuAZSmaELNaOR9yU&maxResults=9&order=viewCount',
+        url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyACNhuv5Pn2MSFKh4GGCrlkzzdX12qd1U4&maxResults=9&order=viewCount',
         data: {
             'q': '블록체인'
         },
@@ -94,7 +92,7 @@
         let search = $("#search").val();
 
         $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBlT8QAcxDfx_33PbFMuAZSmaELNaOR9yU&maxResults=9&order=viewCount',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyACNhuv5Pn2MSFKh4GGCrlkzzdX12qd1U4&maxResults=9&order=viewCount',
             data: {
                 'q': search
             },
@@ -131,6 +129,23 @@
             $("#search__button").trigger("click");
             return false;
         }
+    })
+</script>
+
+<!-- SignOut JS -->
+<script>
+    $('#signOut').submit(function () {
+        $.ajax({
+            url: 'signOut',
+            type: 'get',
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 로그아웃되었습니다.");
+                    location = "/";
+                }
+            }
+        })
+        return false;
     })
 </script>
 </body>

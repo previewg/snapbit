@@ -24,13 +24,13 @@
                 <input type="hidden" name="id" th:value="${session.user_info.id}">
                 <p class="text-3xl mb-5">계정 정보</p>
                 <div class="flex justify-between">
-                    <input required placeholder="이름" type="text" th:value="${session.user_info.name}" name="name"
+                    <input readonly placeholder="이름" type="text" th:value="${session.user_info.name}" name="name"
                            id="userInfo__name" style="width: 49%"/>
-                    <input required placeholder="비밀번호" type="text" th:value="${session.user_info.nickname}"
+                    <input readonly placeholder="닉네임" type="text" th:value="${session.user_info.nickname}"
                            name="nickname" id="userInfo__nickname" style="width: 49%"/>
                 </div>
                 <p class="text-xs" id="error_nickname"></p>
-                <input required type="email" placeholder="이메일" th:value="${session.user_info.email}" name="email"
+                <input readonly type="email" placeholder="이메일" th:value="${session.user_info.email}" name="email"
                        id="userInfo__email"/>
                 <p class="text-xs" id="error_email"></p>
                 <input required minlength="6" type="password" placeholder="비밀번호" name="pwd" id="signUp__pwd"/>

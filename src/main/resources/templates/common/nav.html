@@ -23,16 +23,16 @@
             </ul>
         </form>
     </div>
-    <div class="flex-grow flex justify-center transform" th:if="${session.user_info} != null">
+    <div class="flex-grow flex justify-center transform focus:outline-none" th:if="${session.user_info} != null">
         <form id="signOut">
             <ul class="flex">
                 <div class="flex items-center">
-                    <a href="/userInfo">
+                    <a href="/userInfo" class="focus:outline-none">
                         <img src="../img/userIcon.svg"
                              class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </a>
                     <p th:text="|${session.user_info.nickname}님|" class="text-lg mr-5"></p>
-                    <button>
+                    <button class="focus:outline-none">
                         <img src="../img/signOut.svg"
                              class="h-8 w-8 mr-3 transform hover:scale-110 duration-300 ease-in-out">
                     </button>
