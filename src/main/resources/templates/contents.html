@@ -124,6 +124,14 @@
             }
         });
     });
+
+    $('#search').keydown(function(e) {
+        var key = e.keyCode;
+        if(key == 13) { // enter key
+            $("#search__button").trigger("click");
+            return false;
+        }
+    })
 </script>
 </body>
 </html>

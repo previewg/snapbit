@@ -88,21 +88,25 @@
     <!-- end featured section -->
 
     <!-- subscribe -->
-    <div class="rounded flex md:shadow mt-12 pb-16">
+    <div class="rounded flex mt-12 pb-16">
         <img
                 src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
                 class="w-0 md:w-1/4 object-cover rounded-l" />
-        <div class="px-4 py-2">
+        <div class="p-4 flex flex-col justify-around ">
             <h3 class="text-3xl text-gray-800 font-bold">뉴스를 구독하세요!</h3>
             <p class="text-xl text-gray-700">매일 아침 8시, 새로운 뉴스와 함께 아침을 시작해보세요.</p>
-            <form class="mt-4 mb-10">
-                <input type="email"
-                       class="rounded bg-gray-100 px-4 py-2 border focus:border-green-400"
-                       placeholder="snapbit1004@gmail.com" />
-                <button class="px-4 py-2 rounded bg-green-800 text-gray-100">
-                    구독신청
-                    <i class='bx bx-right-arrow-alt'></i>
-                </button>
+            <form class="mt-4 mb-10" id="subscribe">
+                <th:block th:if="${session.user_info} != null">
+                    <input class="userok" type="hidden" name="email" th:value="${session.user_info.email}">
+                    <button id="subscribe__btn" class="px-4 py-2 rounded bg-green-800 text-gray-100 mt-8">
+                        구독신청<i class='bx bx-right-arrow-alt'></i>
+                    </button>
+                </th:block>
+                <th:block th:if="${session.user_info} == null">
+                    <button onclick="userVerify()" class="px-4 py-2 rounded bg-green-800 text-gray-100 mt-8">
+                        구독신청<i class='bx bx-right-arrow-alt'></i>
+                    </button>
+                </th:block>
                 <p class="text-green-900 opacity-50 text-sm mt-1">언제든 구독 취소를 할 수 있습니다.</p>
             </form>
         </div>
@@ -185,6 +189,30 @@
         })
         return false;
     })
+</script>
+
+
+<script>
+    $("#subscribe__btn").click(function () {
+        $.ajax({
+            url: 'subscribe',
+            type: 'post',
+            data:$("#subscribe").serialize(),
+            success: function (res) {
+                if (res === "success") {
+                    alert("정상적으로 구독신청이 완료되었습니다!");
+                    location = "/news";
+                }
+            }
+        })
+        return false;
+    })
+
+    function userVerify() {
+        alert("로그인 후 이용바랍니다.");
+        return false;
+    }
+
 </script>
 </body>
 </html>
